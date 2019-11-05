@@ -1,7 +1,0 @@
-<div class="rsFilter-results-content">
-  <img v-if="dataLoading && !dataError" class="rsPage-loader" src="/static/circle-loader.svg" alt="rackspace loader" />
-  <component :is="types[content]" v-if="!dataLoading && !dataError" :data="filteredResources"></component>
-  <div class="rsFilter-error" v-if="dataError">
-    {{ dataError }}
-  </div>
-</div>
