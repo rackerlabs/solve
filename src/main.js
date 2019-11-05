@@ -2,7 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueLogger from 'vuejs-logger';
-import _ from 'lodash';
 import VuePaginate from 'vue-paginate';
 import Strings from '@/filters/strings';
 import '@nm/zoolander/dist/css/derek.css'; // eslint-disable-line
