@@ -9,6 +9,7 @@ export default Vue.component('thought-leadership-content', {
   data() {
     return {
       loading: false,
+      content: null,
     };
   },
   created() {
@@ -23,9 +24,9 @@ export default Vue.component('thought-leadership-content', {
           method: 'get',
           url: 'http://localhost:8888/api/thought-leadership?_format=json',
         });
-        console.log('request: ', request);
+        this.content = request.response;
       } catch (e) {
-        console.log(e.message || e);
+        this.$log.error(e.message || e);
       } finally {
         this.loading = false;
       }

@@ -5,14 +5,15 @@ import VueLogger from 'vuejs-logger';
 import VuePaginate from 'vue-paginate';
 import Strings from '@/filters/strings';
 import '@nm/zoolander/dist/css/derek.css'; // eslint-disable-line
-import '@nm/zoolander/dist/js/global-components/filter-bar/filter-accordion'; // eslint-disable-line
 import './scss/main.scss';
 import App from './app-view';
 import router from './router';
 import store from './store';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 Vue.use(VueLogger, {
-  logLevels: ['debug', 'info', 'warn', 'error', 'fatal'],
+  logLevels: isProd ? 'error' : ['debug', 'info', 'warn', 'error', 'fatal'],
   stringifyArguments: true,
   showLogLevel: true,
   showMethodName: true,
@@ -32,7 +33,7 @@ Vue.config.performance = true;
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#rsFilter-center',
+  el: '#rsSolve',
   router,
   store,
   components: { App },
