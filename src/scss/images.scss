@@ -1,5 +1,12 @@
 .rsPage-loader {
   display: block;
-  margin: 0 auto;
-  width: 30%;
+  margin: 50px auto;
+  width: 150px;
+}
+
+// TODO remove this when zoolander is updated
+.rsTl-feature-header {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

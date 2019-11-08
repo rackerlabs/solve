@@ -27,6 +27,7 @@ Vue.filter('truncate', Strings.truncate);
 Vue.filter('translate', Strings.translate);
 
 // lend me a hand lodash! to all components
+Vue.prototype.$env = process.env.NODE_ENV;
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
 Vue.config.performance = true;
