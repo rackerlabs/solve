@@ -1,52 +1,53 @@
 <div>
-  <img v-if="loading" class="rsPage-loader" src="/static/circle-loader.svg" alt="rackspace loader" />
+  <img v-if="loading" class="rsPage-loader" src="/static/tail-spin.svg" alt="rackspace loader" />
   <div v-if="!loading">
-    <div class="rsTl-feature-header">
+    <div class="rsTl-feature-header" :style="{ 'background-image': 'url(' + featured.first.field_image + ')' }">
       <div class="container container-xl">
         <div class="rsTl-feature-headerInner">
           <div class="rsTl-feature-text">
-            <span class="rsTl-article-read">Article (12 minute read)</span>
-            <h1 class="rsTl-feature-title">Why You Need a Multi-Layered Security & Compliance Strategy</h1>
+            <span class="rsTl-article-read">Article ({{ featured.first.field_content_length }} minute read)</span>
+            <h1 class="rsTl-feature-title">{{ featured.first.title }}</h1>
+            <p class="rsTl-feature-p" v-html="$options.filters.truncate(featured.first.body, 200)"></p>
             <p class="rsTl-feature-p">
-              While many businesses still tend to run their own IT, the challenges facing
-              these internal teams is increasing.
-            </p>
-            <p class="rsTl-feature-p">
-              <span class="rsTl-feature-author">Pierre Fricke</span> – October 21, 2019
+              <span class="rsTl-feature-author">{{ featured.first.author }}</span> – {{ formatDate(featured.first.field_published_date) }}
             </p>
           </div>
         </div>
       </div>
     </div>
-    
     <div class="container container-xl">
       <div class="rsTl-article-row">
         <div class="rsTl-column">
+          <strong>Article ({{ featured.second.field_content_length }} minute read)</strong><br />
+          <strong>{{ featured.second.title }}</strong><br />
+          <strong v-html="$options.filters.truncate(featured.second.body, 200)"></strong>
+        </div>
+      </div>
+      <div class="rsTl-article-row">
+        <div class="rsTl-column">
           <div class="rsTl-relatedTopics-row">
-            <div class="rsTl-relatedTopics-col">
+            <div class="rsTl-relatedTopics-col" v-for="article in filteredContent.trimmed">
               <div class="rsTl-relatedTopics-feature">
-                <div class="rsTl-relatedTopics-img" style="background-image:url('/static/doge-small.png');"></div>
+                <div class="rsTl-relatedTopics-img" :style="{ 'background-image' : 'url(' + article.field_image + ')' }"></div>
                 <div class="rsTl-relatedTopics-text">
-                  <span class="rsTl-relatedTopics-type"><strong>Video</strong> (1 minute view)</span>
-                  <h3 class="rsTl-relatedTopics-smallHeader">Real IT Modernization in Action</h3>
+                  <span class="rsTl-relatedTopics-type">
+                    <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} minute view)</span>
+                  <h3 class="rsTl-relatedTopics-smallHeader">{{ article.title }}</h3>
                   <a class="button lead rsTl-relatedTopics-btn">Watch the Video</a>
                 </div>
               </div>
             </div>
-            <div class="rsTl-relatedTopics-col">
-              <div class="rsTl-relatedTopics-feature">
-                <div class="rsTl-relatedTopics-img" style="background-image:url('/static/doge-small.png');"></div>
-                <div class="rsTl-relatedTopics-text">
-                  <span class="rsTl-relatedTopics-type"><strong>Podcast</strong> (24 minute listen)</span>
-                  <h3 class="rsTl-relatedTopics-smallHeader">What Real Digital Transformation Looks Like</h3>
-                  <a class="button lead rsTl-relatedTopics-btn">Listen Now</a>
-                </div>
-              </div>
-            </div>
-          </div> 
+          </div>
         </div>
       </div>
+      <p>
+        <a
+          href="#"
+          @click.prevent="loadMore"
+          :style="{ 'opacity': visibleContent >= filteredContent.full.length ? .3 : 1 }">
+          Load More Posts
+        </a>
+      </p>
     </div>
-    
   </div>
 </div>
