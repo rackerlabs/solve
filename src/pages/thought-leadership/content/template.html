@@ -11,6 +11,13 @@
             <p class="rsTl-feature-p">
               <span class="rsTl-feature-author">{{ featured.first.author }}</span> – {{ formatDate(featured.first.field_published_date) }}
             </p>
+            <p>
+              <a
+                :href="featured.first.alias"
+                class="button lead rsTl-relatedTopics-btn">
+                {{ ctaText[featured.first.field_content_type] }}
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -18,9 +25,25 @@
     <div class="container container-xl">
       <div class="rsTl-article-row">
         <div class="rsTl-column">
-          <strong>Article ({{ featured.second.field_content_length }} minute read)</strong><br />
-          <strong>{{ featured.second.title }}</strong><br />
-          <strong v-html="$options.filters.truncate(featured.second.body, 200)"></strong>
+          <div class="rsTl-featuredLarge-row">
+            <div class="rsTl-featuredLarge-inner">
+              <div class="rsTl-featuredLarge-img" :style="{ 'background-image': 'url(' + featured.second.field_image + ')' }"></div>
+              <div class="rsTl-featuredLarge-text">
+                <span class="rsTl-featuredLarge-type">
+                  <strong>{{ featured.second.field_content_type }}</strong> ({{ featured.second.field_content_length }} minute view)
+                </span>
+                <h3 class="rsTl-relatedTopics-smallHeader">{{ featured.second.title }}</h3>
+                <p v-html="$options.filters.truncate(featured.second.body, 200)"></p>
+                <p>
+                  <a
+                    :href="featured.second.alias"
+                    class="button lead rsTl-relatedTopics-btn">
+                    {{ ctaText[featured.second.field_content_type] }}
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="rsTl-article-row">
@@ -31,9 +54,14 @@
                 <div class="rsTl-relatedTopics-img" :style="{ 'background-image' : 'url(' + article.field_image + ')' }"></div>
                 <div class="rsTl-relatedTopics-text">
                   <span class="rsTl-relatedTopics-type">
-                    <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} minute view)</span>
+                    <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} minute view)
+                  </span>
                   <h3 class="rsTl-relatedTopics-smallHeader">{{ article.title }}</h3>
-                  <a class="button lead rsTl-relatedTopics-btn">Watch the Video</a>
+                  <a
+                    :href="article.alias"
+                    class="button lead rsTl-relatedTopics-btn">
+                    {{ ctaText[article.field_content_type] }}
+                  </a>
                 </div>
               </div>
             </div>

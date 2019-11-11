@@ -19,6 +19,14 @@ export default Vue.component('thought-leadership-content', {
         full: content,
       };
     },
+    ctaText() {
+      return {
+        Video: 'Watch the Video',
+        Article: 'Read the Article',
+        Podcast: 'Listen Now',
+        Infographic: 'Read Now',
+      };
+    },
   },
   data() {
     return {
