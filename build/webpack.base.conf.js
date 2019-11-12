@@ -38,6 +38,7 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       '@nm': resolve('node_modules'),
+      'zoolander$': 'zoolander/dist/css/derek.css'
     }
   },
   module: {

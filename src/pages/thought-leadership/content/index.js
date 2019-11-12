@@ -21,10 +21,10 @@ export default Vue.component('thought-leadership-content', {
     },
     ctaText() {
       return {
-        Video: 'Watch the Video',
-        Article: 'Read the Article',
-        Podcast: 'Listen Now',
-        Infographic: 'Read Now',
+        Video: Drupal.t('Watch the Video'),
+        Article: Drupal.t('Read the Article'),
+        Podcast: Drupal.t('Listen Now'),
+        Infographic: Drupal.t('Read Now'),
       };
     },
   },
@@ -67,10 +67,11 @@ export default Vue.component('thought-leadership-content', {
             }, 2000);
           });
         } else {
-          data = await axios({
+          const resp = await axios({
             method: 'get',
-            url: 'http://rackspace.com/api/thought-leadership?_format=json',
+            url: 'api/thought-leadership?_format=json',
           });
+          data = resp.data;
         }
       } catch (e) {
         this.$log.error(e.message || e);

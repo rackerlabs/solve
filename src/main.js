@@ -4,10 +4,9 @@ import Vue from 'vue';
 import VueLogger from 'vuejs-logger';
 import VuePaginate from 'vue-paginate';
 import Strings from '@/filters/strings';
-import '@nm/zoolander/dist/css/derek.css'; // eslint-disable-line
+import Zoolander from 'zoolander'; // eslint-disable-line
 import './scss/main.scss';
-import App from './app-view';
-import router from './router';
+import App from './pages/thought-leadership';
 import store from './store';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -35,7 +34,6 @@ Vue.config.performance = true;
 /* eslint-disable no-new */
 new Vue({
   el: '#rsSolve',
-  router,
   store,
   components: { App },
   template: '<App/>',
