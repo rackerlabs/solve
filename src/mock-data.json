@@ -1,5 +1,5 @@
-[ 
-   { 
+[
+   {
       "title":"Thought Leadership: Sample",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -9,11 +9,11 @@
       "field_image":"\/static\/collaboration.jpg",
       "field_content_type":"Video",
       "field_content_length":"5",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow, Raj-Hair Awvawlos",
       "field_modified_date":"2019-10-24T16:00:55-05:00",
       "field_published_date":"2019-10-01T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Two: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -23,11 +23,11 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"10",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2019-08-22T16:00:55-05:00",
       "field_published_date":"2019-08-09T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Three: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -37,11 +37,11 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"14",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2019-09-22T16:00:55-05:00",
       "field_published_date":"2019-09-09T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Four: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -51,11 +51,11 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"14",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2019-07-22T16:00:55-05:00",
       "field_published_date":"2019-07-09T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Five: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -65,11 +65,11 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"14",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2019-06-22T16:00:55-05:00",
       "field_published_date":"2019-06-09T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Six: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -79,11 +79,11 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"14",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2019-05-22T16:00:55-05:00",
       "field_published_date":"2019-05-09T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Seven: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -93,11 +93,11 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"14",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2019-04-22T16:00:55-05:00",
       "field_published_date":"2019-04-09T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Eight: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -107,11 +107,11 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"14",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2019-03-22T16:00:55-05:00",
       "field_published_date":"2019-03-09T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Nine: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -121,11 +121,11 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"14",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2019-02-22T16:00:55-05:00",
       "field_published_date":"2019-02-09T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Ten: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -135,11 +135,11 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"14",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2019-01-22T16:00:55-05:00",
       "field_published_date":"2019-01-09T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Eleven: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -149,11 +149,11 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"14",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2018-12-22T16:00:55-05:00",
       "field_published_date":"2018-12-09T11:20:57-05:00"
    },
-   { 
+   {
       "title":"Twelve: This is a Semi Long Title",
       "alias":"\/thought-leadership\/sample-thought-leadership",
       "type":"thought_leadership",
@@ -163,7 +163,7 @@
       "field_image":"\/static\/castle.jpg",
       "field_content_type":"Video",
       "field_content_length":"14",
-      "author": "Mike Rustyellow",
+      "field_author": "Mike Rustyellow",
       "field_modified_date":"2018-11-22T16:00:55-05:00",
       "field_published_date":"2018-11-09T11:20:57-05:00"
    }
