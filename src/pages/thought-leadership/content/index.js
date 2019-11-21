@@ -13,7 +13,6 @@ export default Vue.component('thought-leadership-content', {
     filteredContent() {
       const content = _.cloneDeep(this.content);
       content.splice(0, 2);
-      // TODO add filter logic when nav is ready
       return {
         trimmed: content.slice(0, this.visibleContent),
         full: content,
@@ -44,10 +43,20 @@ export default Vue.component('thought-leadership-content', {
     this.getData();
   },
   methods: {
+    async filterByTopic() {
+      if (typeof window.rsSolveFilterTopic !== 'undefined') {
+        this.content = _.filter(this.content, (item) => {
+          // eslint-disable-next-line no-underscore-dangle
+          const tokens = item.field_tl_.split(':::');
+          return tokens.indexOf(window.rsSolveFilterTopic) > -1;
+        });
+      }
+    },
     async getData() {
       try {
         this.loading = true;
         this.content = await this.fetchData();
+        this.filterByTopic();
         this.sortData();
         this.featured.first = this.content[0];
         this.featured.second = this.content[1];
