@@ -1,8 +1,18 @@
 <div>
   <img v-if="loading" class="rsPage-loader" src="../../../../static/tail-spin.svg" alt="rackspace loader" />
   <div v-if="!loading">
-    <div class="rsTl-feature-header" :style="{ 'background-image': 'url(' + featured.first.field_image + ')' }">
-      <div class="container container-xl">
+    <div class="rsTl-feature-header">
+      <picture class="rsTl-feature-headerBackground">
+         <!--[if IE 9]><video style="display: none;"><![endif]-->
+        <source class="rsTl-feature-headerBackgroundContent" :srcset="featured.first.banner_1600 + ' 1x'" media="all and (min-width: 1280px)" type="image/jpeg"/>
+        <source class="rsTl-feature-headerBackgroundContent" :srcset="featured.first.banner_1280 + ' 1x'" media="all and (min-width: 992px) and (max-width: 1279px)" type="image/jpeg"/>
+        <source class="rsTl-feature-headerBackgroundContent" :srcset="featured.first.banner_992 + ' 1x'" media="all and (min-width: 768px) and (max-width: 991px)" type="image/jpeg"/>
+        <source class="rsTl-feature-headerBackgroundContent" :srcset="featured.first.banner_768 + ' 1x'" media="all and (min-width: 480px) and (max-width: 767px)" type="image/jpeg"/>
+        <source class="rsTl-feature-headerBackgroundContent" :srcset="featured.first.banner_480 + ' 1x'" type="image/jpeg"/>
+        <!--[if IE 9]></video><![endif]-->
+        <img class="rsTl-feature-headerBackgroundContent" :src="featured.first.banner_1280" :alt="featured.first.title">
+      </picture>
+      <div class="rsTl-feature-headerContainer container container-xl">
         <div class="rsTl-feature-headerInner">
           <div class="rsTl-feature-text">
             <span class="rsTl-article-read">Article ({{ featured.first.field_content_length }} minute read)</span>
@@ -27,7 +37,7 @@
         <div class="rsTl-column">
           <div class="rsTl-featuredLarge-row">
             <div class="rsTl-featuredLarge-inner">
-              <div class="rsTl-featuredLarge-img" :style="{ 'background-image': 'url(' + featured.second.field_image + ')' }"></div>
+              <div class="rsTl-featuredLarge-img" :style="{ 'background-image': 'url(' + featured.second.solve_secondary + ')' }"></div>
               <div class="rsTl-featuredLarge-text">
                 <span class="rsTl-featuredLarge-type">
                   <strong>{{ featured.second.field_content_type }}</strong> ({{ featured.second.field_content_length }} minute view)
@@ -48,10 +58,10 @@
       </div>
       <div class="rsTl-article-row">
         <div class="rsTl-column">
-          <div class="rsTl-relatedTopics-row">
+          <div class="rsTl-relatedTopics-row rsTl-relatedTopics-2colRow">
             <div class="rsTl-relatedTopics-col" v-for="article in filteredContent.trimmed">
               <div class="rsTl-relatedTopics-feature">
-                <div class="rsTl-relatedTopics-img" :style="{ 'background-image' : 'url(' + article.field_image + ')' }"></div>
+                <div class="rsTl-relatedTopics-img" :style="{ 'background-image' : 'url(' + article.solve_tertiary + ')' }"></div>
                 <div class="rsTl-relatedTopics-text">
                   <span class="rsTl-relatedTopics-type">
                     <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} minute view)
