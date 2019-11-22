@@ -42,7 +42,6 @@ module.exports = {
       ignorePropertyModificationsFor: [
         's', // state alias
         'p', // mutation params
-        '$', // for jquery plugins
         'state', // for vuex state
         'acc', // for reduce accumulators
         'e', // for e.returnvalue
@@ -61,7 +60,7 @@ module.exports = {
     }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-shadow': [ 'error', { 
+    'no-shadow': [ 'error', {
       allow: ['state', 'commit', 'dispatch', 'rootState'] // vuex param options
     }]
   }
