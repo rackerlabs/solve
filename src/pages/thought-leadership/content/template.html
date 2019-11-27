@@ -1,6 +1,6 @@
 <div>
-  <img v-if="loading" class="rsPage-loader" src="../../../../static/tail-spin.svg" alt="rackspace loader" />
-  <div v-if="!loading">
+  <img v-if="loading && !fetchError" class="rsPage-loader" src="../../../../static/tail-spin.svg" alt="rackspace loader" />
+  <div v-if="!loading && !fetchError && filteredContent.total > 0">
     <div class="rsTl-feature-header">
       <picture class="rsTl-feature-headerBackground">
          <!--[if IE 9]><video style="display: none;"><![endif]-->
@@ -15,7 +15,7 @@
       <div class="rsTl-feature-headerContainer container container-xl">
         <div class="rsTl-feature-headerInner">
           <div class="rsTl-feature-text">
-            <span class="rsTl-article-read">Article ({{ featured.first.field_content_length }} minute read)</span>
+            <span class="rsTl-article-read"><strong>{{ featured.first.field_content_type }}</strong> ({{ featured.first.field_content_length }} {{ ' minute ' + viewAction[featured.first.field_content_type] | translate }})</span>
             <h1 class="rsTl-feature-title">{{ featured.first.title }}</h1>
             <p class="rsTl-feature-p" v-html="$options.filters.truncate(featured.first.body, 200)"></p>
             <p class="rsTl-feature-p">
@@ -25,7 +25,7 @@
               <a
                 :href="featured.first.alias"
                 class="button lead rsTl-relatedTopics-btn">
-                {{ ctaText[featured.first.field_content_type] }}
+                {{ ctaText[featured.first.field_content_type] | translate }}
               </a>
             </p>
           </div>
@@ -33,14 +33,14 @@
       </div>
     </div>
     <div class="container container-xl">
-      <div class="rsTl-article-row">
+      <div class="rsTl-article-row" v-if="featured.second">
         <div class="rsTl-column">
           <div class="rsTl-featuredLarge-row">
             <div class="rsTl-featuredLarge-inner">
               <div class="rsTl-featuredLarge-img" :style="{ 'background-image': 'url(' + featured.second.solve_secondary + ')' }"></div>
               <div class="rsTl-featuredLarge-text">
                 <span class="rsTl-featuredLarge-type">
-                  <strong>{{ featured.second.field_content_type }}</strong> ({{ featured.second.field_content_length }} minute view)
+                  <strong>{{ featured.second.field_content_type }}</strong> ({{ featured.second.field_content_length }} {{ ' minute ' + viewAction[featured.second.field_content_type] | translate }})
                 </span>
                 <h3 class="rsTl-relatedTopics-smallHeader">{{ featured.second.title }}</h3>
                 <p v-html="$options.filters.truncate(featured.second.body, 200)"></p>
@@ -48,7 +48,7 @@
                   <a
                     :href="featured.second.alias"
                     class="button lead rsTl-relatedTopics-btn">
-                    {{ ctaText[featured.second.field_content_type] }}
+                    {{ ctaText[featured.second.field_content_type] | translate }}
                   </a>
                 </p>
               </div>
@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-      <div class="rsTl-article-row">
+      <div class="rsTl-article-row" v-if="filteredContent.full.length > 0">
         <div class="rsTl-column">
           <div class="rsTl-relatedTopics-row rsTl-relatedTopics-2colRow">
             <div class="rsTl-relatedTopics-col" v-for="article in filteredContent.trimmed">
@@ -64,13 +64,13 @@
                 <div class="rsTl-relatedTopics-img" :style="{ 'background-image' : 'url(' + article.solve_tertiary + ')' }"></div>
                 <div class="rsTl-relatedTopics-text">
                   <span class="rsTl-relatedTopics-type">
-                    <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} minute view)
+                    <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} {{ ' minute ' + viewAction[article.field_content_type] | translate }})
                   </span>
                   <h3 class="rsTl-relatedTopics-smallHeader">{{ article.title }}</h3>
                   <a
                     :href="article.alias"
                     class="button lead rsTl-relatedTopics-btn">
-                    {{ ctaText[article.field_content_type] }}
+                    {{ ctaText[article.field_content_type] | translate }}
                   </a>
                 </div>
               </div>
@@ -81,11 +81,17 @@
       <p>
         <a
           href="#"
-          @click.prevent="loadMore"
-          :style="{ 'opacity': visibleContent >= filteredContent.full.length ? .3 : 1 }">
-          Load More Posts
+          v-if="visibleContent < filteredContent.full.length"
+          @click.prevent="loadMore">
+          {{ 'Load More Posts' | translate }}
         </a>
       </p>
     </div>
+  </div>
+  <div v-if="!loading && filteredContent.total < 1">
+    {{ 'No articles could be found. Please try again later.' | translate }}
+  </div>
+  <div v-if="!loading && fetchError" class="rsTl-error">
+    {{ fetchError | translate }}
   </div>
 </div>

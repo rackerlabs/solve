@@ -11,25 +11,40 @@ export default Vue.component('thought-leadership-content', {
   name: 'thought-leadership-content',
   computed: {
     filteredContent() {
-      const content = _.cloneDeep(this.content);
-      content.splice(0, 2);
+      let content = _.cloneDeep(this.content);
+      const total = content.length;
+      if (content && total > 2) {
+        content.splice(0, 2);
+      } else {
+        content = [];
+      }
       return {
-        trimmed: content.slice(0, this.visibleContent),
-        full: content,
+        trimmed: content ? content.slice(0, this.visibleContent) : [],
+        full: content || [],
+        total,
+      };
+    },
+    viewAction() {
+      return {
+        Video: 'watch',
+        Article: 'read',
+        Podcast: 'listen',
+        Infographic: 'read',
       };
     },
     ctaText() {
       return {
-        Video: Drupal.t('Watch the Video'),
-        Article: Drupal.t('Read the Article'),
-        Podcast: Drupal.t('Listen Now'),
-        Infographic: Drupal.t('Read Now'),
+        Video: 'Watch the Video',
+        Article: 'Read the Article',
+        Podcast: 'Listen Now',
+        Infographic: 'Read Now',
       };
     },
   },
   data() {
     return {
       loading: false,
+      fetchError: false,
       moreAmount: 4,
       visibleContent: 4,
       featured: {
@@ -55,12 +70,14 @@ export default Vue.component('thought-leadership-content', {
     async getData() {
       try {
         this.loading = true;
+        this.fetchError = false;
         this.content = await this.fetchData();
         this.filterByTopic();
         this.sortData();
         this.featured.first = this.content[0];
         this.featured.second = this.content[1];
       } catch (e) {
+        this.fetchError = e.message || 'No articles could be found. Please try again later.';
         this.$log.error(e.message || e);
       } finally {
         this.loading = false;
@@ -68,22 +85,18 @@ export default Vue.component('thought-leadership-content', {
     },
     async fetchData() {
       let data = {};
-      try {
-        if (this.$env === 'development') {
-          data = await new Promise((resolve) => {
-            setTimeout(() => {
-              resolve(mockData);
-            }, 2000);
-          });
-        } else {
-          const resp = await axios({
-            method: 'get',
-            url: 'api/thought-leadership?_format=json',
-          });
-          data = resp.data;
-        }
-      } catch (e) {
-        this.$log.error(e.message || e);
+      if (this.$env === 'development') {
+        data = await new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(mockData);
+          }, 2000);
+        });
+      } else {
+        const resp = await axios({
+          method: 'get',
+          url: 'api/thought-leadership?_format=json',
+        });
+        data = resp.data;
       }
       return data;
     },
