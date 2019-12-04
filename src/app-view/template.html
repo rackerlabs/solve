@@ -1,2 +1,0 @@
-<router-view></router-view>
-

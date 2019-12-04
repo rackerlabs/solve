@@ -6,9 +6,9 @@ import { DateTime } from 'luxon';
 
 const template = require('./template.html');
 
-export default Vue.component('thought-leadership-content', {
+export default Vue.component('solve-overview-content', {
   template,
-  name: 'thought-leadership-content',
+  name: 'solve-overview-content',
   computed: {
     filteredContent() {
       let content = _.cloneDeep(this.content);
