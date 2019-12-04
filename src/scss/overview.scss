@@ -14,6 +14,15 @@
   background-size: cover;
 }
 
+.rsTl-feature-text {
+  // sass-lint:disable-block force-element-nesting
+  .button.lead {
+    &:hover {
+      background-color: $rackspace-red;
+    }
+  }
+}
+
 .rsTl-featuredLarge-row {
   // sass-lint:disable-block no-vendor-prefixes no-duplicate-properties
   -ms-grid-columns: 1fr;
@@ -25,11 +34,23 @@
 
 .rsTl-featuredLarge-inner {
   // sass-lint:disable-block no-vendor-prefixes no-duplicate-properties
-  -ms-grid-columns: (1fr)[2];
+  -ms-grid-columns: 1fr 1fr;
   display: -ms-grid;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(2, 1fr);
+
+  &:hover {
+    box-shadow: 0 0 16px -1px rgba(0, 0, 0, .2);
+    text-decoration: none;
+  }
+
+  // sass-lint:disable-block force-element-nesting
+  .button.lead {
+    &:hover {
+      background-color: $rackspace-red;
+    }
+  }
 }
 
 .rsTl-featuredLarge-img {
