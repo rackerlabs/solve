@@ -1,5 +1,5 @@
 <div>
-  <img v-if="loading && !fetchError" class="rsPage-loader" src="../../../../static/tail-spin.svg" alt="rackspace loader" />
+  <img v-if="loading && !fetchError" class="rsPage-loader" src="../../../static/tail-spin.svg" alt="rackspace loader" />
   <div v-if="!loading && !fetchError && filteredContent.total > 0">
     <a class="rsTl-feature-header" :href="featured.first.alias">
       <picture class="rsTl-feature-headerBackground">

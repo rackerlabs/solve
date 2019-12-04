@@ -5,7 +5,7 @@ import VueLogger from 'vuejs-logger';
 import Strings from '@/filters/strings';
 import Zoolander from 'zoolander'; // eslint-disable-line
 import './scss/main.scss';
-import App from './pages/thought-leadership';
+import App from './pages/solve-overview';
 
 const isProd = process.env.NODE_ENV === 'production';
 
