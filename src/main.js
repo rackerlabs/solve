@@ -2,12 +2,10 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueLogger from 'vuejs-logger';
-import VuePaginate from 'vue-paginate';
 import Strings from '@/filters/strings';
 import Zoolander from 'zoolander'; // eslint-disable-line
 import './scss/main.scss';
 import App from './pages/thought-leadership';
-import store from './store';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -19,7 +17,6 @@ Vue.use(VueLogger, {
   showConsoleColors: true,
 });
 
-Vue.use(VuePaginate);
 Vue.filter('capitalize', Strings.capitalize);
 Vue.filter('unescape', Strings.unescape);
 Vue.filter('truncate', Strings.truncate);
@@ -34,7 +31,6 @@ Vue.config.performance = true;
 /* eslint-disable no-new */
 new Vue({
   el: '#rsSolve',
-  store,
   components: { App },
   template: '<App/>',
 });
