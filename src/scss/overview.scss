@@ -40,6 +40,10 @@
   grid-gap: 10px;
   grid-template-columns: repeat(2, 1fr);
 
+  &:focus {
+    text-decoration: none;
+  }
+
   &:hover {
     box-shadow: 0 0 16px -1px rgba(0, 0, 0, .2);
     text-decoration: none;
