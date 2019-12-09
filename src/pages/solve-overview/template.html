@@ -24,7 +24,7 @@
             <p>
               <button
                 :href="featured.first.alias"
-                class="button lead rsTl-relatedTopics-btn">
+                class=" button rsTl-feature-btn">
                 {{ ctaText[featured.first.field_content_type] | translate }}
               </button>
             </p>
@@ -37,7 +37,7 @@
         <div class="rsTl-column">
           <div class="rsTl-featuredLarge-row">
             <a class="rsTl-featuredLarge-inner" :href="featured.second.alias">
-              <div class="rsTl-featuredLarge-img" :style="{ 'background-image': 'url(' + featured.second.solve_secondary + ')' }"></div>
+              <div class="rsTl-featuredLarge-img" :style="{ 'background-image': 'url(' + featured.second.solve_secondary + ')', 'background-position': 'top right' }"></div>
               <div class="rsTl-featuredLarge-text">
                 <span class="rsTl-featuredLarge-type">
                   <strong>{{ featured.second.field_content_type }}</strong> ({{ featured.second.field_content_length }} {{ ' minute ' + viewAction[featured.second.field_content_type] | translate }})
@@ -47,7 +47,7 @@
                 <p>
                   <button
                     :href="featured.second.alias"
-                    class="button lead rsTl-relatedTopics-btn">
+                    class=" button rsTl-secondary-btn">
                     {{ ctaText[featured.second.field_content_type] | translate }}
                   </button>
                 </p>
@@ -61,7 +61,7 @@
           <div class="rsTl-relatedTopics-row rsTl-relatedTopics-2colRow">
             <div class="rsTl-relatedTopics-col" v-for="article in filteredContent.trimmed">
               <a class="rsTl-relatedTopics-feature" :href="article.alias">
-                <div class="rsTl-relatedTopics-img" :style="{ 'background-image' : 'url(' + article.solve_tertiary + ')' }"></div>
+                <div class="rsTl-relatedTopics-img" :style="{ 'background-image' : 'url(' + article.solve_tertiary + ')', 'background-position': 'top right' }"></div>
                 <div class="rsTl-relatedTopics-text">
                   <span class="rsTl-relatedTopics-type">
                     <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} {{ ' minute ' + viewAction[article.field_content_type] | translate }})
@@ -69,7 +69,7 @@
                   <h3 class="rsTl-relatedTopics-smallHeader">{{ article.title }}</h3>
                   <button
                     :href="article.alias"
-                    class="button lead rsTl-relatedTopics-btn">
+                    class=" button rsTl-tertiary-btn">
                     {{ ctaText[article.field_content_type] | translate }}
                   </button>
                 </div>
