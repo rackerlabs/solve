@@ -1,7 +1,7 @@
 <div>
   <img v-if="loading && !fetchError" class="rsPage-loader" src="../../../static/tail-spin.svg" alt="rackspace loader" />
   <div v-if="!loading && !fetchError && filteredContent.total > 0">
-    <a class="rsTl-feature-header" :href="featured.first.alias">
+    <div class="rsTl-feature-header">
       <picture class="rsTl-feature-headerBackground">
          <!--[if IE 9]><video style="display: none;"><![endif]-->
         <source class="rsTl-feature-headerBackgroundContent" :srcset="featured.first.banner_1600 + ' 1x'" media="all and (min-width: 1280px)" type="image/jpeg"/>
@@ -16,43 +16,43 @@
         <div class="rsTl-feature-headerInner">
           <div class="rsTl-feature-text">
             <span class="rsTl-article-read"><strong>{{ featured.first.field_content_type }}</strong> ({{ featured.first.field_content_length }} {{ ' minute ' + viewAction[featured.first.field_content_type] | translate }})</span>
-            <h1 class="rsTl-feature-title">{{ featured.first.title }}</h1>
+            <h1 class="rsTl-feature-title"><a class="rsTl-feature-titleLink" :href="featured.first.alias">{{ featured.first.title }}</a></h1>
             <p class="rsTl-feature-p" v-html="$options.filters.truncate(featured.first.body, 200)"></p>
             <p class="rsTl-feature-p">
               <span class="rsTl-feature-author">{{ featured.first.field_author }}</span> – {{ formatDate(featured.first.field_published_date) }}
             </p>
             <p>
-              <button
+              <a
                 :href="featured.first.alias"
                 class=" button rsTl-feature-btn">
                 {{ ctaText[featured.first.field_content_type] | translate }}
-              </button>
+              </a>
             </p>
           </div>
         </div>
       </div>
-    </a>
+    </div>
     <div class="rsTl-contentContainer container container-xl">
       <div class="rsTl-article-row" v-if="featured.second">
         <div class="rsTl-column">
           <div class="rsTl-featuredLarge-row">
-            <a class="rsTl-featuredLarge-inner" :href="featured.second.alias">
-              <div class="rsTl-featuredLarge-img" :style="{ 'background-image': 'url(' + featured.second.solve_secondary + ')', 'background-position': 'top right' }"></div>
+            <div class="rsTl-featuredLarge-inner">
+              <a class="rsTl-featuredLarge-img" :href="featured.second.alias" :style="{ 'background-image': 'url(' + featured.second.solve_secondary + ')', 'background-position': 'top right' }"></a>
               <div class="rsTl-featuredLarge-text">
                 <span class="rsTl-featuredLarge-type">
                   <strong>{{ featured.second.field_content_type }}</strong> ({{ featured.second.field_content_length }} {{ ' minute ' + viewAction[featured.second.field_content_type] | translate }})
                 </span>
-                <h3 class="rsTl-relatedTopics-smallHeader">{{ featured.second.title }}</h3>
+                <h3 class="rsTl-relatedTopics-smallHeader"><a class="rsTl-relatedTopics-link" :href="featured.second.alias">{{ featured.second.title }}</a></h3>
                 <p v-html="$options.filters.truncate(featured.second.body, 200)"></p>
                 <p>
-                  <button
+                  <a
                     :href="featured.second.alias"
                     class=" button rsTl-secondary-btn">
                     {{ ctaText[featured.second.field_content_type] | translate }}
-                  </button>
+                  </a>
                 </p>
               </div>
-            </a>
+            </div>
           </div>
         </div>
       </div>
@@ -60,20 +60,20 @@
         <div class="rsTl-column">
           <div class="rsTl-relatedTopics-row rsTl-relatedTopics-2colRow">
             <div class="rsTl-relatedTopics-col" v-for="article in filteredContent.trimmed">
-              <a class="rsTl-relatedTopics-feature" :href="article.alias">
-                <div class="rsTl-relatedTopics-img" :style="{ 'background-image' : 'url(' + article.solve_tertiary + ')', 'background-position': 'top right' }"></div>
+              <div class="rsTl-relatedTopics-feature">
+                <a class="rsTl-relatedTopics-img" :href="article.alias" :style="{ 'background-image' : 'url(' + article.solve_tertiary + ')', 'background-position': 'top right' }"></a>
                 <div class="rsTl-relatedTopics-text">
                   <span class="rsTl-relatedTopics-type">
                     <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} {{ ' minute ' + viewAction[article.field_content_type] | translate }})
                   </span>
-                  <h3 class="rsTl-relatedTopics-smallHeader">{{ article.title }}</h3>
-                  <button
+                  <h3 class="rsTl-relatedTopics-smallHeader"><a class="rsTl-relatedTopics-link" :href="article.alias">{{ article.title }}</a></h3>
+                  <a
                     :href="article.alias"
                     class=" button rsTl-tertiary-btn">
                     {{ ctaText[article.field_content_type] | translate }}
-                  </button>
+                  </a>
                 </div>
-              </a>
+              </div>
             </div>
           </div>
         </div>
