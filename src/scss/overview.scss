@@ -30,16 +30,6 @@
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(2, 1fr);
-
-  &:focus {
-    text-decoration: none;
-  }
-
-  &:hover {
-    box-shadow: 0 0 16px -1px rgba(0, 0, 0, .2);
-    text-decoration: none;
-  }
-
 }
 
 .rsTl-featuredLarge-img {
@@ -49,6 +39,10 @@
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 300px;
+
+  &:hover {
+    box-shadow: 0 0 16px -1px transparentize($black, .8);
+  }
 }
 
 .rsTl-featuredLarge-text {
@@ -69,14 +63,45 @@
 .rsTl-tertiary-btn {
   background: $rackspace-red;
   color: $white;
+  font-weight: 600;
   margin: 0;
   padding-left: 30px;
   padding-right: 30px;
+
+  &:focus,
+  &:hover {
+    background-color: darken($rackspace-red, 15%);
+    color: $white;
+    text-decoration: none;
+  }
 }
 
 .rsTl-feature-btn {
   background-color: $rackspace-red;
   color: $white;
+  font-weight: 600;
+
+  &:hover {
+    background-color: darken($white, 5%);
+  }
+}
+
+.rsTl-feature-titleLink {
+  color: $white;
+
+  &:focus,
+  &:hover {
+    color: darken($white, 5%);
+    text-decoration: none;
+  }
+}
+
+.rsTl-relatedTopics-link {
+  &:focus,
+  &:hover {
+    color: darken($black, 1%);
+    text-decoration: none;
+  }
 }
 
 // mobile rules
