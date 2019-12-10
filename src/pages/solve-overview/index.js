@@ -117,5 +117,11 @@ export default Vue.component('solve-overview-content', {
       const date = DateTime.fromISO(isoDate);
       return `${date.monthLong} ${date.day}, ${date.year}`;
     },
+    getGridStyles(index) {
+      return {
+        'grid-row': Math.floor(index / 2) + 1,
+        'grid-column': (index % 2) + 1,
+      };
+    },
   },
 });

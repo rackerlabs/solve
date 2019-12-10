@@ -38,6 +38,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: block;
   min-height: 300px;
 
   &:hover {
@@ -125,6 +126,16 @@
     grid-area: 2 / 1 / 3 / 3;
     padding-left: 0;
     padding-right: 0;
+  }
+}
+
+@media screen and (max-width: $screen-md-min - 1) {
+  .rsTl-relatedTopics-row {
+    display: block;
+  }
+
+  .rsTl-relatedTopics-col {
+    margin-bottom: 10px;
   }
 }
 
