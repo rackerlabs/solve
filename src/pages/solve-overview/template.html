@@ -19,7 +19,7 @@
             <h1 class="rsTl-feature-title"><a class="rsTl-feature-titleLink" :href="featured.first.alias">{{ featured.first.title }}</a></h1>
             <p class="rsTl-feature-p" v-html="$options.filters.truncate(featured.first.body, 200)"></p>
             <p class="rsTl-feature-p">
-              <span class="rsTl-feature-author">{{ featured.first.field_author }}</span> – {{ formatDate(featured.first.field_published_date) }}
+              <span class="rsTl-feature-author">{{ featured.first.field_author }}</span> – {{ getDateString(featured.first.field_published_date) }}
             </p>
             <p>
               <a

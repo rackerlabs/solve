@@ -2,13 +2,14 @@ import Vue from 'vue';
 import axios from 'axios';
 import _ from 'lodash';
 import mockData from '@/mock-data.json';
-import { DateTime } from 'luxon';
+import formatDate from '@/mixins/date-format';
 
 const template = require('./template.html');
 
 export default Vue.component('solve-overview-content', {
   template,
   name: 'solve-overview-content',
+  mixins: [formatDate],
   computed: {
     filteredContent() {
       let content = _.cloneDeep(this.content);
@@ -59,9 +60,9 @@ export default Vue.component('solve-overview-content', {
   },
   methods: {
     async filterByTopic() {
+      // console.log(window.rsSolveFilterTopic);
       if (typeof window.rsSolveFilterTopic !== 'undefined') {
         this.content = _.filter(this.content, (item) => {
-          // eslint-disable-next-line no-underscore-dangle
           const tokens = item.field_tl_.split(':::');
           return tokens.indexOf(window.rsSolveFilterTopic) > -1;
         });
@@ -69,6 +70,12 @@ export default Vue.component('solve-overview-content', {
     },
     async getData() {
       try {
+        // const resp = await axios({
+        //   method: 'get',
+        //   url: 'https://www.rackspace.com/api/thought-leadership-categories?_format=json',
+        // });
+        // console.log('resp: ', resp.data);
+
         this.loading = true;
         this.fetchError = false;
         this.content = await this.fetchData();
@@ -113,9 +120,8 @@ export default Vue.component('solve-overview-content', {
         this.visibleContent += this.moreAmount;
       }
     },
-    formatDate(isoDate) {
-      const date = DateTime.fromISO(isoDate);
-      return `${date.monthLong} ${date.day}, ${date.year}`;
+    getDateString(isoDate) {
+      return this.formatDate(new Date(isoDate));
     },
     getGridStyles(index) {
       return {
