@@ -1,11 +1,13 @@
 {
-  "name": "rackerlabs-vue-filter",
-  "version": "1.0.0",
+  "name": "rackerlabs-solve",
+  "version": "0.0.1",
   "description": "Rackspace Solve Application",
   "author": "rswebteam",
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --inline --disable-host-check --progress --config build/webpack.dev.conf.js",
+    "preversion": "npm run lint:js && npm run lint:sass && npm run test && npm run build && git add -f dist",
+    "postversion": "git push && git push --tags",
     "start": "gulp & npm run dev",
     "test": "karma start --single-run",
     "lint:js": "eslint --ext .js, src",
