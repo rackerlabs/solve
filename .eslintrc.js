@@ -49,11 +49,9 @@ module.exports = {
         'val',
       ]
     }],
+    'no-underscore-dangle': 0,
     'import/no-unresolved': ['error', {
       ignore: ['@nm/']
-    }],
-    'no-underscore-dangle': ['error', {
-      allow: ['$_']
     }],
     // allow optionalDependencies
     'import/no-extraneous-dependencies': ['error', {
