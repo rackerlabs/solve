@@ -88,11 +88,10 @@
 }
 
 .rsTl-feature-titleLink {
-  color: $white;
 
   &:focus,
   &:hover {
-    color: darken($white, 5%);
+    color: darken($black, 1%);
     text-decoration: none;
   }
 }
@@ -140,6 +139,16 @@
 }
 
 @media screen and (min-width: $screen-md-min) {
+  .rsTl-feature-titleLink {
+    color: $white;
+
+    &:focus,
+    &:hover {
+      color: darken($white, 5%);
+      text-decoration: none;
+    }
+  }
+
   .rsTl-feature-btn {
     background-color: $white;
     color: $rackspace-red;
