@@ -1,7 +1,13 @@
 <div>
   <img v-if="loading && !fetchError" class="rsPage-loader" src="../../../static/tail-spin.svg" alt="rackspace loader" />
+
+  <div class="rsTl-contentContainer container container-xl rsTl-topic-section" v-if="topic.header && !loading && !fetchError">
+    <h1 v-html="topic.header"></h1>
+    <h3 v-html="topic.desc"></h3>
+  </div>
+
   <div v-if="!loading && !fetchError && filteredContent.total > 0">
-    <div class="rsTl-feature-header">
+    <div class="rsTl-feature-header" v-if="featured.first">
       <picture class="rsTl-feature-headerBackground">
          <!--[if IE 9]><video style="display: none;"><![endif]-->
         <source class="rsTl-feature-headerBackgroundContent" :srcset="featured.first.banner_1600 + ' 1x'" media="all and (min-width: 1280px)" type="image/jpeg"/>
