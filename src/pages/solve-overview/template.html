@@ -59,7 +59,7 @@
       <div class="rsTl-article-row" v-if="filteredContent.full.length > 0">
         <div class="rsTl-column">
           <div class="rsTl-relatedTopics-row rsTl-relatedTopics-2colRow">
-            <div class="rsTl-relatedTopics-col" v-for="article in filteredContent.trimmed">
+            <div class="rsTl-relatedTopics-col" v-for="(article, index) in filteredContent.trimmed" :style="getGridStyles(index)" >
               <div class="rsTl-relatedTopics-feature">
                 <a class="rsTl-relatedTopics-img" :href="article.alias" :style="{ 'background-image' : 'url(' + article.solve_tertiary + ')', 'background-position': 'top right' }"></a>
                 <div class="rsTl-relatedTopics-text">
