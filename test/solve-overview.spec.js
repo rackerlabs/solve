@@ -17,6 +17,31 @@ describe('Solve', () => {
     };
   });
 
+  describe('rendered', () => {
+    describe('preloader', () => {
+      it('should contain a preloader image', () => {
+        expect(this.wrapper.html()).to.contain('<img src="data:image/svg+xml;base64,');
+      });
+
+      it('should not contain a preloader image after content is loaded', async () => {
+        await this.wrapper.vm.getData();
+        expect(this.wrapper.html()).to.not.contain('<img src="data:image/svg+xml;base64,');
+      });
+    });
+
+    describe('CTAs', async () => {
+      it('should all contain track-cta class', async () => {
+        window.rsSolveFilterTopic = '122';
+        await this.wrapper.vm.getData();
+        const linkCt = this.wrapper.findAll('a').length;
+        expect(linkCt).to.eql(9);
+        for (let i = 0; i < linkCt; i += 1) {
+          expect(this.wrapper.findAll('a').at(i).classes()).to.contain('track-cta');
+        }
+      });
+    });
+  });
+
   describe('computed', () => {
     describe('filteredContent', () => {
       it('loads all content and has two featured items when no filter is present', async () => {
@@ -185,12 +210,12 @@ describe('Solve', () => {
     });
 
     describe('getCategories', () => {
-      it('retrieves 5 results', () => this.wrapper.vm.getCategories().then((cats) => {
-        expect(cats.length).to.eql(5);
-        expect(cats[1].name).to.eql('Innovation');
-        expect(cats[1].tid).to.eql('269');
-        expect(cats[4].name).to.eql('What Are You Solving For?');
-        expect(cats[4].tid).to.eql('273');
+      it('retrieves 6 results', () => this.wrapper.vm.getCategories().then((cats) => {
+        expect(cats.length).to.eql(6);
+        expect(cats[2].name).to.eql('Innovation');
+        expect(cats[2].tid).to.eql('269');
+        expect(cats[5].name).to.eql('What Are You Solving For?');
+        expect(cats[5].tid).to.eql('273');
       }));
     });
   });
