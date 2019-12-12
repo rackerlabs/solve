@@ -1,6 +1,18 @@
 # Rackspace Solve
 
-## Build Setup
+Solve is a Vue.js app that lives on www.rackspace.com/solve
+
+It pulls content from the following endpoints:
+  - https://www.rackspace.com/api/thought-leadership?_format=json
+  - https://www.rackspace.com/api/thought-leadership-categories?_format=json
+
+Mock data is provided for tests and local development purposes.
+
+## Requirements
+
+NodeJS 10, 11 or 12.
+
+## Getting Started
 
 ```bash
 # install dependencies
@@ -10,23 +22,40 @@ npm install
 npm run dev
 ```
 
-```bash
-# build for production with minification
-npm run build
+## Versioning
 
-# build for production and view the bundle analyzer report
-npm run build --report
+Use the following command to bump current version:
+
+```bash
+npm version major | minor | patch
 ```
 
-## Translations
-Translations are currently mocked using the Drupal.t() function.
+For more information on versioning, see http://semver.org/
 
-## TODO
-- setup tests for components / vuex
-- test with other content endpoints (like events)
-- card styling looks off when there are less than 3 on a row. Verify html is correct on cards.
-- need correct content for customer stories cards (author, quote etc.)
+## Linting
 
+Use the following commands to perform linting:
+```bash
+# Lint Javascript
+npm run lint:js
 
-## Further Vue documentation regarding this app
+# Lint Sass
+npm run lint:sass
+```
+
+## Test Running
+
+Use the following command to run tests:
+
+```bash
+npm run test
+```
+
+## Other
+
+### Translations
+All translations are ran through Drupal.t(). For local development purposes,
+Drupal.t() has been mocked in index.html
+
+### Further Vue Documentation
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
