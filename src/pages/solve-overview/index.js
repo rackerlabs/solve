@@ -28,6 +28,7 @@ export default Vue.component('solve-overview-content', {
         trimmed: content ? content.slice(0, this.visibleContent) : [],
         full: content || [],
         total,
+        featured: Math.min(articles, total),
       };
     },
     viewAction() {
@@ -88,9 +89,7 @@ export default Vue.component('solve-overview-content', {
       let data = {};
       if (this.$env === 'development') {
         data = await new Promise((resolve) => {
-          setTimeout(() => {
-            resolve(mockCategories);
-          }, 1000);
+          resolve(mockCategories);
         });
       } else {
         const resp = await axios({
@@ -127,9 +126,7 @@ export default Vue.component('solve-overview-content', {
       let data = {};
       if (this.$env === 'development') {
         data = await new Promise((resolve) => {
-          setTimeout(() => {
-            resolve(mockData);
-          }, 2000);
+          resolve(mockData);
         });
       } else {
         const resp = await axios({
@@ -147,10 +144,23 @@ export default Vue.component('solve-overview-content', {
         return c - d;
       }).reverse();
     },
+    getContent() {
+      return this.content;
+    },
+    getFilteredContentCount() {
+      return this.filteredContent.full.length;
+    },
+    getVisibleContentCount() {
+      return this.visibleContent;
+    },
+    incrementVisibleContent() {
+      const itemsLeft = this.getFilteredContentCount() - this.getVisibleContentCount();
+      this.visibleContent += (itemsLeft > this.moreAmount) ? this.moreAmount : itemsLeft;
+    },
     loadMore() {
-      const num = this.visibleContent;
-      if (num < this.filteredContent.full.length) {
-        this.visibleContent += this.moreAmount;
+      const num = this.getVisibleContentCount();
+      if (num < this.getFilteredContentCount()) {
+        this.incrementVisibleContent();
       }
     },
     getDateString(isoDate) {
