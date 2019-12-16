@@ -14,7 +14,7 @@ export default Vue.component('solve-overview-content', {
   computed: {
     filteredContent() {
       let content = _.cloneDeep(this.content);
-      const total = content.length;
+      const total = content ? content.length : 0;
       let articles = 1;
       if (!this.topic.header) {
         articles = 2;
