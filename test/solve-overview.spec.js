@@ -29,6 +29,21 @@ describe('Solve', () => {
       });
     });
 
+    describe('content', () => {
+      it('should display header fields instead of title fields', async () => {
+        await this.wrapper.vm.getData();
+        // Check featured post.
+        expect(this.wrapper.text()).to.not.contain('Thought Leadership: Sample Admin Title');
+        expect(this.wrapper.text()).to.contain('Thought Leadership Sample Header');
+        // Check secondary post.
+        expect(this.wrapper.text()).to.not.contain('Two: This is a Semi Long Title');
+        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 2');
+        // Check tertiary post.
+        expect(this.wrapper.text()).to.not.contain('Three: This is a Semi Long Title');
+        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 3');
+      });
+    });
+
     describe('CTAs', async () => {
       it('should all contain track-cta class', async () => {
         window.rsSolveFilterTopic = '122';
@@ -143,7 +158,7 @@ describe('Solve', () => {
     describe('fetchData', () => {
       it('retrieves 12 results', () => this.wrapper.vm.fetchData().then((data) => {
         expect(data.length).to.eql(12);
-        expect(data[0].title).to.eql('Thought Leadership: Sample');
+        expect(data[0].title).to.eql('Thought Leadership: Sample Admin Title');
         expect(data[10].field_author).to.eql('Mike Rustyellow');
       }));
     });
