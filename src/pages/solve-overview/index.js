@@ -94,7 +94,7 @@ export default Vue.component('solve-overview-content', {
       } else {
         const resp = await axios({
           method: 'get',
-          url: 'api/thought-leadership-categories?_format=json',
+          url: `api/thought-leadership-categories?_format=json${this.getVersionString()}`,
         });
         data = resp.data;
       }
@@ -131,11 +131,18 @@ export default Vue.component('solve-overview-content', {
       } else {
         const resp = await axios({
           method: 'get',
-          url: 'api/thought-leadership?_format=json',
+          url: `api/thought-leadership?_format=json${this.getVersionString()}`,
         });
         data = resp.data;
       }
       return data;
+    },
+    getVersionString() {
+      if (typeof window.drupalSettings !== 'undefined' && typeof window.drupalSettings.rsSolveLastMod !== 'undefined' && window.drupalSettings.rsSolveLastMod.length) {
+        return `&version=${window.drupalSettings.rsSolveLastMod}`;
+      }
+
+      return '';
     },
     sortData() {
       this.content = this.content.sort((a, b) => {
