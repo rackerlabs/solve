@@ -233,5 +233,26 @@ describe('Solve', () => {
         expect(cats[5].tid).to.eql('273');
       }));
     });
+
+    describe('getVersionString', () => {
+      it('should have a version when drupalSettings.rsSolveLastMod property is set.', async () => {
+        window.drupalSettings = {
+          rsSolveLastMod: 'abc123',
+        };
+        expect(this.wrapper.vm.getVersionString()).to.eql('&version=abc123');
+      });
+
+      it('should have an empty version when drupalSettings.rsSolveLastMod property is empty.', async () => {
+        window.drupalSettings = {
+          rsSolveLastMod: '',
+        };
+        expect(this.wrapper.vm.getVersionString()).to.eql('');
+      });
+
+      it('should be empty when drupalSettings.rsSolveLastMod property is not set.', async () => {
+        window.drupalSettings = {};
+        expect(this.wrapper.vm.getVersionString()).to.eql('');
+      });
+    });
   });
 });
