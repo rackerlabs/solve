@@ -42,6 +42,30 @@ describe('Solve', () => {
         expect(this.wrapper.text()).to.not.contain('Three: This is a Semi Long Title');
         expect(this.wrapper.text()).to.contain('This is a Semi Long Title 3');
       });
+
+      it('should output the translatable content type strings, not the content type key', async () => {
+        await this.wrapper.vm.getData();
+        // Check content type strings.
+        expect(this.wrapper.text()).to.not.contain('article');
+        expect(this.wrapper.text()).to.contain('Article');
+        expect(this.wrapper.text()).to.not.contain('podcast');
+        expect(this.wrapper.text()).to.contain('Podcast');
+        expect(this.wrapper.text()).to.not.contain('video');
+        expect(this.wrapper.text()).to.contain('Video');
+        expect(this.wrapper.text()).to.not.contain('infographic');
+        expect(this.wrapper.text()).to.contain('Infographic');
+
+        // Check the CTA buttons.
+        expect(this.wrapper.text()).to.contain('Watch the Video');
+        expect(this.wrapper.text()).to.contain('Read the Article');
+        expect(this.wrapper.text()).to.contain('Listen Now');
+        expect(this.wrapper.text()).to.contain('Read Now');
+
+        // Check the action text.
+        expect(this.wrapper.text()).to.contain('watch');
+        expect(this.wrapper.text()).to.contain('read');
+        expect(this.wrapper.text()).to.contain('listen');
+      });
     });
 
     describe('CTAs', async () => {
@@ -83,10 +107,10 @@ describe('Solve', () => {
     describe('viewAction', () => {
       it('returns expected values', () => {
         expect(this.wrapper.vm.viewAction).to.eql({
-          Video: 'watch',
-          Article: 'read',
-          Podcast: 'listen',
-          Infographic: 'read',
+          video: 'watch',
+          article: 'read',
+          podcast: 'listen',
+          infographic: 'read',
         });
       });
     });
@@ -94,10 +118,10 @@ describe('Solve', () => {
     describe('ctaText', () => {
       it('returns expected values', () => {
         expect(this.wrapper.vm.ctaText).to.eql({
-          Video: 'Watch the Video',
-          Article: 'Read the Article',
-          Podcast: 'Listen Now',
-          Infographic: 'Read Now',
+          video: 'Watch the Video',
+          article: 'Read the Article',
+          podcast: 'Listen Now',
+          infographic: 'Read Now',
         });
       });
     });

@@ -21,7 +21,7 @@
       <div class="rsTl-feature-headerContainer container container-xl">
         <div class="rsTl-feature-headerInner">
           <div class="rsTl-feature-text">
-            <span class="rsTl-article-read"><strong>{{ featured.first.field_content_type }}</strong> ({{ featured.first.field_content_length }} {{ ' minute ' + viewAction[featured.first.field_content_type] | translate }})</span>
+            <span class="rsTl-article-read"><strong>{{ featured.first.field_content_type }}</strong> ({{ featured.first.field_content_length }} {{ ' minute ' + viewAction[featured.first.field_content_type_key] | translate }})</span>
             <h1 class="rsTl-feature-title"><a class="rsTl-feature-titleLink track-cta" :href="featured.first.alias">{{ featured.first.header }}</a></h1>
             <p class="rsTl-feature-p" v-html="$options.filters.truncate(featured.first.body, 200)"></p>
             <p class="rsTl-feature-p">
@@ -31,7 +31,7 @@
               <a
                 :href="featured.first.alias"
                 class="button rsTl-feature-btn track-cta">
-                {{ ctaText[featured.first.field_content_type] | translate }}
+                {{ ctaText[featured.first.field_content_type_key] | translate }}
               </a>
             </p>
           </div>
@@ -46,7 +46,7 @@
               <a class="rsTl-featuredLarge-img track-cta" :href="featured.second.alias" :style="{ 'background-image': 'url(' + featured.second.solve_secondary + ')', 'background-position': 'top right' }"></a>
               <div class="rsTl-featuredLarge-text">
                 <span class="rsTl-featuredLarge-type">
-                  <strong>{{ featured.second.field_content_type }}</strong> ({{ featured.second.field_content_length }} {{ ' minute ' + viewAction[featured.second.field_content_type] | translate }})
+                  <strong>{{ featured.second.field_content_type }}</strong> ({{ featured.second.field_content_length }} {{ ' minute ' + viewAction[featured.second.field_content_type_key] | translate }})
                 </span>
                 <h3 class="rsTl-relatedTopics-smallHeader"><a class="rsTl-relatedTopics-link track-cta" :href="featured.second.alias">{{ featured.second.header }}</a></h3>
                 <p v-html="$options.filters.truncate(featured.second.body, 200)"></p>
@@ -54,7 +54,7 @@
                   <a
                     :href="featured.second.alias"
                     class="button rsTl-secondary-btn track-cta">
-                    {{ ctaText[featured.second.field_content_type] | translate }}
+                    {{ ctaText[featured.second.field_content_type_key] | translate }}
                   </a>
                 </p>
               </div>
@@ -70,13 +70,13 @@
                 <a class="rsTl-relatedTopics-img track-cta" :href="article.alias" :style="{ 'background-image' : 'url(' + article.solve_tertiary + ')', 'background-position': 'top right' }"></a>
                 <div class="rsTl-relatedTopics-text">
                   <span class="rsTl-relatedTopics-type">
-                    <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} {{ ' minute ' + viewAction[article.field_content_type] | translate }})
+                    <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} {{ ' minute ' + viewAction[article.field_content_type_key] | translate }})
                   </span>
                   <h3 class="rsTl-relatedTopics-smallHeader"><a class="rsTl-relatedTopics-link track-cta" :href="article.alias">{{ article.header }}</a></h3>
                   <a
                     :href="article.alias"
                     class="button rsTl-tertiary-btn track-cta">
-                    {{ ctaText[article.field_content_type] | translate }}
+                    {{ ctaText[article.field_content_type_key] | translate }}
                   </a>
                 </div>
               </div>

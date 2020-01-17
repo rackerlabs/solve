@@ -33,18 +33,18 @@ export default Vue.component('solve-overview-content', {
     },
     viewAction() {
       return {
-        Video: 'watch',
-        Article: 'read',
-        Podcast: 'listen',
-        Infographic: 'read',
+        video: 'watch',
+        article: 'read',
+        podcast: 'listen',
+        infographic: 'read',
       };
     },
     ctaText() {
       return {
-        Video: 'Watch the Video',
-        Article: 'Read the Article',
-        Podcast: 'Listen Now',
-        Infographic: 'Read Now',
+        video: 'Watch the Video',
+        article: 'Read the Article',
+        podcast: 'Listen Now',
+        infographic: 'Read Now',
       };
     },
   },
