@@ -66,6 +66,30 @@ describe('Solve', () => {
         expect(this.wrapper.text()).to.contain('read');
         expect(this.wrapper.text()).to.contain('listen');
       });
+
+      it('should display author when syndicated content is unchecked', async () => {
+        await this.wrapper.vm.getData();
+        this.wrapper.vm.content[0].field_syndicated_content = 'False';
+        // Check featured post.
+        expect(this.wrapper.text()).to.not.contain('Roger HEB Avalos');
+        expect(this.wrapper.text()).to.contain('Mike Rustyellow, Raj-Hair Awvawlos');
+      });
+
+      it('should display author when syndicated content is null', async () => {
+        await this.wrapper.vm.getData();
+        this.wrapper.vm.content[0].field_syndicated_content = '';
+        // Check featured post.
+        expect(this.wrapper.text()).to.not.contain('Roger HEB Avalos');
+        expect(this.wrapper.text()).to.contain('Mike Rustyellow, Raj-Hair Awvawlos');
+      });
+
+      it('should display publication attribution when syndicated content is checked', async () => {
+        await this.wrapper.vm.getData();
+        this.wrapper.vm.content[0].field_syndicated_content = 'True';
+        // Check featured post.
+        expect(this.wrapper.text()).to.not.contain('Mike Rustyellow, Raj-Hair Awvawlos');
+        expect(this.wrapper.text()).to.contain('Roger HEB Avalos');
+      });
     });
 
     describe('CTAs', async () => {
