@@ -100,6 +100,13 @@ export default Vue.component('solve-overview-content', {
       }
       return data;
     },
+    initTitleFix() {
+      if (typeof $ !== 'undefined' && $.fn.fitTitle) {
+        $(document).ready(() => {
+          $('.rsTl-feature-header').fitTitle();
+        });
+      }
+    },
     async getData() {
       try {
         this.loading = true;
@@ -120,6 +127,7 @@ export default Vue.component('solve-overview-content', {
         this.$log.error(e.message || e);
       } finally {
         this.loading = false;
+        this.initTitleFix();
       }
     },
     async fetchData() {
