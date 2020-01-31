@@ -71,24 +71,35 @@ describe('Solve', () => {
         await this.wrapper.vm.getData();
         this.wrapper.vm.content[0].field_syndicated_content = 'False';
         // Check featured post.
-        expect(this.wrapper.text()).to.not.contain('Roger HEB Avalos');
-        expect(this.wrapper.text()).to.contain('Mike Rustyellow, Raj-Hair Awvawlos');
+        expect(this.wrapper.text()).to.not.contain('Roger Avalos & HEB');
+        expect(this.wrapper.text()).to.contain('Mike Rustyellow & Raj-Hair Awvawlos');
       });
 
       it('should display author when syndicated content is null', async () => {
         await this.wrapper.vm.getData();
         this.wrapper.vm.content[0].field_syndicated_content = '';
         // Check featured post.
-        expect(this.wrapper.text()).to.not.contain('Roger HEB Avalos');
-        expect(this.wrapper.text()).to.contain('Mike Rustyellow, Raj-Hair Awvawlos');
+        expect(this.wrapper.text()).to.not.contain('Roger Avalos & HEB');
+        expect(this.wrapper.text()).to.contain('Mike Rustyellow & Raj-Hair Awvawlos');
       });
 
       it('should display publication attribution when syndicated content is checked', async () => {
         await this.wrapper.vm.getData();
         this.wrapper.vm.content[0].field_syndicated_content = 'True';
         // Check featured post.
-        expect(this.wrapper.text()).to.not.contain('Mike Rustyellow, Raj-Hair Awvawlos');
-        expect(this.wrapper.text()).to.contain('Roger HEB Avalos');
+        expect(this.wrapper.text()).to.not.contain('Mike Rustyellow & Raj-Hair Awvawlos');
+        expect(this.wrapper.text()).to.contain('Roger Avalos & HEB');
+      });
+
+      it('should display an escaped header', async () => {
+        await this.wrapper.vm.getData();
+        // Check header for all three header types.
+        expect(this.wrapper.text()).to.contain('Thought Leadership Sample Header & Stuff');
+        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 2 & Stuff');
+        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 3 & Stuff');
+        expect(this.wrapper.text()).to.not.contain('Thought Leadership Sample Header &amp; Stuff');
+        expect(this.wrapper.text()).to.not.contain('This is a Semi Long Title 2 &amp; Stuff');
+        expect(this.wrapper.text()).to.not.contain('This is a Semi Long Title 3 &amp; Stuff');
       });
     });
 
