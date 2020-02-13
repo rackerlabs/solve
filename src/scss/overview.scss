@@ -81,7 +81,7 @@
 .rsTl-tertiary-btn {
   background: $rackspace-red;
   color: $white;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0;
   padding-left: 30px;
   padding-right: 30px;
@@ -97,7 +97,7 @@
 .rsTl-feature-btn {
   background-color: $rackspace-red;
   color: $white;
-  font-weight: 600;
+  font-weight: 500;
 
   &:hover {
     background-color: darken($white, 5%);
