@@ -1,6 +1,15 @@
-// import fontello icons here
-@import 'icons/css/animation.min.css';
-@import 'icons/css/rswebfonts-embedded.min.css';
-@import 'icons/css/rswebfonts-ie7-codes.min.css';
-@import 'icons/css/rswebfonts-ie7.min.css';
-@import 'icons/css/rswebfonts.min.css';
+@mixin loadFiraWeight($basename, $weight) {
+  $basepath: '~@nm/zoolander/dist/font/Fira';
+
+  @font-face {
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: $weight;
+    src: url($basepath + '/eot/' + $basename + '.eot') format('embedded-opentype'),
+    url($basepath + '/woff2/' + $basename + '.woff2') format('woff2'),
+    url($basepath + '/woff/' + $basename + '.woff') format('woff'),
+    url($basepath + '/ttf/' + $basename + '.ttf') format('truetype');
+  }
+}
+
+@include loadFiraWeight('FiraSans-Medium', 500);
