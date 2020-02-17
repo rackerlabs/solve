@@ -21,7 +21,8 @@
       "banner_768": "\/static\/hero-1.jpg?768",
       "banner_480": "\/static\/hero-1.jpg?480",
       "solve_secondary": "\/static\/hero-1.jpg?solve_secondary",
-      "solve_tertiary": "\/static\/hero-1.jpg?solve_tertiary"
+      "solve_tertiary": "\/static\/hero-1.jpg?solve_tertiary",
+      "sticky": "True"
    },
    {
       "title":"Two: This is a Semi Long Title",
