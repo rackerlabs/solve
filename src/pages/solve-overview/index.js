@@ -114,6 +114,12 @@ export default Vue.component('solve-overview-content', {
         this.content = await this.fetchData();
         await this.filterByTopic();
         this.sortData();
+        // if there is a pinned article present, we need to move it to the top
+        const pinned = _.findIndex(this.content, { sticky: 'True' });
+        if (pinned >= 0) {
+          this.content.splice(0, 0, this.content.splice(pinned, 1)[0]);
+        }
+
         // if there is no topic filter then we need the featured header
         let article = 0;
         if (!this.topic.header) {
