@@ -44,17 +44,17 @@
         <div class="rsTl-column">
           <div class="rsTl-featuredLarge-row">
             <div class="rsTl-featuredLarge-inner">
-              <a class="rsTl-featuredLarge-img track-cta" :href="featured.second.alias" :style="{ 'background-image': 'url(' + featured.second.solve_secondary + ')', 'background-position': 'top right' }"></a>
+              <a class="rsTl-featuredLarge-img solve-cta" :href="featured.second.alias" :style="{ 'background-image': 'url(' + featured.second.solve_secondary + ')', 'background-position': 'top right' }"></a>
               <div class="rsTl-featuredLarge-text">
                 <span class="rsTl-featuredLarge-type">
                   <strong>{{ featured.second.field_content_type }}</strong> ({{ featured.second.field_content_length }} {{ ' minute ' + viewAction[featured.second.field_content_type_key] | translate }})
                 </span>
-                <h3 class="rsTl-relatedTopics-smallHeader"><a class="rsTl-relatedTopics-link track-cta" :href="featured.second.alias" v-html="featured.second.header"></a></h3>
+                <h3 class="rsTl-relatedTopics-smallHeader"><a class="rsTl-relatedTopics-link solve-cta" :href="featured.second.alias" v-html="featured.second.header"></a></h3>
                 <p v-html="$options.filters.truncate(featured.second.body, 200)"></p>
                 <p>
                   <a
                     :href="featured.second.alias"
-                    class="button rsTl-secondary-btn track-cta">
+                    class="button rsTl-secondary-btn solve-cta">
                     {{ ctaText[featured.second.field_content_type_key] | translate }}
                   </a>
                 </p>
@@ -68,15 +68,15 @@
           <div class="rsTl-relatedTopics-row rsTl-relatedTopics-2colRow">
             <div class="rsTl-relatedTopics-col" v-for="(article, index) in filteredContent.trimmed" :style="getGridStyles(index)" >
               <div class="rsTl-relatedTopics-feature">
-                <a class="rsTl-relatedTopics-img track-cta" :href="article.alias" :style="{ 'background-image' : 'url(' + article.solve_tertiary + ')', 'background-position': 'top right' }"></a>
+                <a class="rsTl-relatedTopics-img solve-cta" :href="article.alias" :style="{ 'background-image' : 'url(' + article.solve_tertiary + ')', 'background-position': 'top right' }"></a>
                 <div class="rsTl-relatedTopics-text">
                   <span class="rsTl-relatedTopics-type">
                     <strong>{{ article.field_content_type }}</strong> ({{ article.field_content_length }} {{ ' minute ' + viewAction[article.field_content_type_key] | translate }})
                   </span>
-                  <h3 class="rsTl-relatedTopics-smallHeader"><a class="rsTl-relatedTopics-link track-cta" :href="article.alias" v-html="article.header"></a></h3>
+                  <h3 class="rsTl-relatedTopics-smallHeader"><a class="rsTl-relatedTopics-link solve-cta" :href="article.alias" v-html="article.header"></a></h3>
                   <a
                     :href="article.alias"
-                    class="button rsTl-tertiary-btn track-cta">
+                    class="button rsTl-tertiary-btn solve-cta">
                     {{ ctaText[article.field_content_type_key] | translate }}
                   </a>
                 </div>

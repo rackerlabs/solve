@@ -104,13 +104,13 @@ describe('Solve', () => {
     });
 
     describe('CTAs', async () => {
-      it('should all contain track-cta class', async () => {
+      it('should all contain solve-cta class', async () => {
         window.rsSolveFilterTopic = '122';
         await this.wrapper.vm.getData();
         const linkCt = this.wrapper.findAll('a').length;
         expect(linkCt).to.eql(9);
         for (let i = 0; i < linkCt; i += 1) {
-          expect(this.wrapper.findAll('a').at(i).classes()).to.contain('track-cta');
+          expect(this.wrapper.findAll('a').at(i).classes()).to.contain('solve-cta');
         }
       });
     });
