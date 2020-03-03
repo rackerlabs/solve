@@ -121,6 +121,48 @@
   }
 }
 
+@mixin override-icon($size, $file) {
+  background-image: url($file);
+  background-size: $size $size;
+  content: ' ';
+  display: inline-block;
+  height: $size;
+  width: $size;
+}
+
+.basement-iconList {
+
+  .fa-facebook-official {
+    &::before {
+      @include override-icon(32px, '/static/basement-fb-icon.svg');
+    }
+  }
+
+  .fa-twitter {
+    &::before {
+      @include override-icon(32px, '/static/basement-tw-icon.svg');
+    }
+  }
+
+  .fa-linkedin {
+    &::before {
+      @include override-icon(32px, '/static/basement-ln-icon.svg');
+    }
+  }
+
+  .fa-youtube {
+    &::before {
+      @include override-icon(32px, '/static/basement-yt-icon.svg');
+    }
+  }
+}
+
+.extLink {
+  &::after {
+    @include override-icon(14px, '/static/external-link-icon.svg');
+  }
+}
+
 // edge hacks
 @supports (-ms-ime-align: auto) { // sass-lint:disable-line no-vendor-prefixes
   .rsTl-relatedTopics-col {
