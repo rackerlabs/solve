@@ -32,6 +32,7 @@ export default Vue.component('solve-overview-content', {
       };
     },
     viewAction() {
+      // If we add any new actions, update rackspace-solve.js in www repo.
       return {
         video: 'watch',
         article: 'read',
@@ -40,6 +41,7 @@ export default Vue.component('solve-overview-content', {
       };
     },
     ctaText() {
+      // If we add any new cta text, update rackspace-solve.js in www repo.
       return {
         video: 'Watch the Video',
         article: 'Read the Article',

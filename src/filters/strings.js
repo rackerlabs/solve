@@ -10,7 +10,7 @@ export default {
     return _.unescape(value);
   },
   translate(string) {
-    return Drupal.t(string);
+    return Drupal.t(string, {}, { context: 'thought_leadership' });
   },
   truncate(value, length, clamp) {
     const clampValue = clamp || '...';
