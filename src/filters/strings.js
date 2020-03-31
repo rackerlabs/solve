@@ -9,8 +9,8 @@ export default {
     if (!value) return '';
     return _.unescape(value);
   },
-  translate(string) {
-    return Drupal.t(string, {}, { context: 'thought_leadership' });
+  translate(string, options = {}) {
+    return Drupal.t(string, options, { context: 'thought_leadership' });
   },
   truncate(value, length, clamp) {
     const clampValue = clamp || '...';
