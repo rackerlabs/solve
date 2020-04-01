@@ -99,6 +99,9 @@
     "webpack-merge": "^4.1.0",
     "zoolander": "git+https://github.com/rackerlabs/zoolander.git#3.0.x"
   },
+  "resolutions": {
+    "minimist": "1.2.5"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint:sass && npm run lint:js"
