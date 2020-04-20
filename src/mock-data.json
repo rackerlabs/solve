@@ -20,6 +20,7 @@
       "banner_992": "\/static\/hero-1.jpg?992",
       "banner_768": "\/static\/hero-1.jpg?768",
       "banner_480": "\/static\/hero-1.jpg?480",
+      "sc_logo": "https://6b3c0991037cdba551ce-216b3ab8cab176a335801e59f991ae8f.ssl.cf1.rackcdn.com/forbes-logo.png",
       "solve_secondary": "\/static\/hero-1.jpg?solve_secondary",
       "solve_tertiary": "\/static\/hero-1.jpg?solve_tertiary",
       "sticky": "True"
@@ -45,6 +46,7 @@
       "banner_992": "\/static\/hero-2.jpg?992",
       "banner_768": "\/static\/hero-2.jpg?768",
       "banner_480": "\/static\/hero-2.jpg?480",
+      "sc_logo": "https://6b3c0991037cdba551ce-216b3ab8cab176a335801e59f991ae8f.ssl.cf1.rackcdn.com/forbes-logo.png",
       "solve_secondary": "\/static\/hero-2.jpg?solve_secondary",
       "solve_tertiary": "\/static\/hero-2.jpg?solve_tertiary"
    },
@@ -237,6 +239,7 @@
       "banner_992": "\/static\/hero-5.jpg?992",
       "banner_768": "\/static\/hero-5.jpg?768",
       "banner_480": "\/static\/hero-5.jpg?480",
+      "sc_logo": "https://6b3c0991037cdba551ce-216b3ab8cab176a335801e59f991ae8f.ssl.cf1.rackcdn.com/forbes-logo.png",
       "solve_secondary": "\/static\/hero-5.jpg?solve_secondary",
       "solve_tertiary": "\/static\/hero-5.jpg?solve_tertiary"
    },

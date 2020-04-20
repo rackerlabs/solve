@@ -1,3 +1,5 @@
+$syndicate-blue: #d7eafa;
+
 .rsPage-loader {
   display: block;
   margin: 50px auto;
@@ -121,6 +123,29 @@
   }
 }
 
+.rsTl-syndicatedBox {
+  background-color: $syndicate-blue;
+  padding: 10px 25px;
+}
+
+.rsTl-syndicatedBox-header {
+  font-weight: 600;
+}
+
+.rsTl-syndicatedBox-logo {
+  align-items: center;
+  display: flex;
+  padding: 0;
+}
+
+.rsTl-syndicatedBox-logoImg {
+  width: 75%;
+}
+
+.rsTl-syndicatedBox-text {
+  padding: 12px;
+}
+
 // edge hacks
 @supports (-ms-ime-align: auto) { // sass-lint:disable-line no-vendor-prefixes
   .rsTl-relatedTopics-col {
@@ -158,6 +183,14 @@
     grid-area: 2 / 1 / 3 / 3;
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .rsTl-syndicatedBox-header {
+    margin-bottom: 35px;
+  }
+
+  .rsTl-syndicatedBox-logoImg {
+    width: initial;
   }
 }
 

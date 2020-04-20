@@ -65,6 +65,7 @@ export default Vue.component('solve-overview-content', {
         second: null,
       },
       content: null,
+      syndicated: null,
     };
   },
   created() {
@@ -121,7 +122,19 @@ export default Vue.component('solve-overview-content', {
         if (pinned >= 0) {
           this.content.splice(0, 0, this.content.splice(pinned, 1)[0]);
         }
-
+        const normalList = [];
+        const syndicated = [];
+        // here we can group syndicated and normal content separately
+        // since they should never be in the same list
+        _.forEach(this.content, (item) => {
+          if (item.field_syndicated_content === 'True') {
+            syndicated.push(item);
+          } else {
+            normalList.push(item);
+          }
+        });
+        this.content = normalList;
+        this.syndicated = syndicated;
         // if there is no topic filter then we need the featured header
         let article = 0;
         if (!this.topic.header) {
