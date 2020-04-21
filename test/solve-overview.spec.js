@@ -33,14 +33,12 @@ describe('Solve', () => {
       it('should display header fields instead of title fields', async () => {
         await this.wrapper.vm.getData();
         // Check featured post.
-        expect(this.wrapper.text()).to.not.contain('Thought Leadership: Sample Admin Title');
-        expect(this.wrapper.text()).to.contain('Thought Leadership Sample Header');
         // Check secondary post.
-        expect(this.wrapper.text()).to.not.contain('Two: This is a Semi Long Title');
-        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 2');
+        expect(this.wrapper.text()).to.not.contain('Four: This is a Semi Long Title');
+        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 4');
         // Check tertiary post.
-        expect(this.wrapper.text()).to.not.contain('Three: This is a Semi Long Title');
-        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 3');
+        expect(this.wrapper.text()).to.not.contain('Five: This is a Semi Long Title');
+        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 5');
       });
 
       it('should output the translatable content type strings, not the content type key', async () => {
@@ -48,18 +46,12 @@ describe('Solve', () => {
         // Check content type strings.
         expect(this.wrapper.text()).to.not.contain('article');
         expect(this.wrapper.text()).to.contain('Article');
-        expect(this.wrapper.text()).to.not.contain('podcast');
-        expect(this.wrapper.text()).to.contain('Podcast');
         expect(this.wrapper.text()).to.not.contain('video');
         expect(this.wrapper.text()).to.contain('Video');
-        expect(this.wrapper.text()).to.not.contain('infographic');
-        expect(this.wrapper.text()).to.contain('Infographic');
 
         // Check the CTA buttons.
         expect(this.wrapper.text()).to.contain('Watch the Video');
         expect(this.wrapper.text()).to.contain('Read the Article');
-        expect(this.wrapper.text()).to.contain('Listen Now');
-        expect(this.wrapper.text()).to.contain('Read Now');
 
         // Check the action text.
         expect(this.wrapper.text()).to.contain('watch');
@@ -72,7 +64,7 @@ describe('Solve', () => {
         this.wrapper.vm.content[0].field_syndicated_content = 'False';
         // Check featured post.
         expect(this.wrapper.text()).to.not.contain('Roger Avalos & HEB');
-        expect(this.wrapper.text()).to.contain('Mike Rustyellow & Raj-Hair Awvawlos');
+        expect(this.wrapper.text()).to.contain('Mike Rustyellow');
       });
 
       it('should display author when syndicated content is null', async () => {
@@ -80,37 +72,37 @@ describe('Solve', () => {
         this.wrapper.vm.content[0].field_syndicated_content = '';
         // Check featured post.
         expect(this.wrapper.text()).to.not.contain('Roger Avalos & HEB');
-        expect(this.wrapper.text()).to.contain('Mike Rustyellow & Raj-Hair Awvawlos');
+        expect(this.wrapper.text()).to.contain('Mike Rustyellow');
       });
 
       it('should display publication attribution when syndicated content is checked', async () => {
         await this.wrapper.vm.getData();
         this.wrapper.vm.content[0].field_syndicated_content = 'True';
         // Check featured post.
-        expect(this.wrapper.text()).to.not.contain('Mike Rustyellow & Raj-Hair Awvawlos');
-        expect(this.wrapper.text()).to.contain('Roger Avalos & HEB');
+        expect(this.wrapper.text()).to.not.contain('Mike Rustyellow - ');
+        expect(this.wrapper.text()).to.contain('Mike Rustyellow & HEB');
       });
 
       it('should display an escaped header', async () => {
         await this.wrapper.vm.getData();
         // Check header for all three header types.
-        expect(this.wrapper.text()).to.contain('Thought Leadership Sample Header & Stuff');
-        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 2 & Stuff');
-        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 3 & Stuff');
-        expect(this.wrapper.text()).to.not.contain('Thought Leadership Sample Header &amp; Stuff');
-        expect(this.wrapper.text()).to.not.contain('This is a Semi Long Title 2 &amp; Stuff');
-        expect(this.wrapper.text()).to.not.contain('This is a Semi Long Title 3 &amp; Stuff');
+        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 4 & Stuff');
+        expect(this.wrapper.text()).to.contain('This is a Semi Long Title 5 & Stuff');
+        expect(this.wrapper.text()).to.not.contain('This is a Semi Long Title 4 &amp; Stuff');
+        expect(this.wrapper.text()).to.not.contain('This is a Semi Long Title 5 &amp; Stuff');
       });
     });
 
     describe('CTAs', async () => {
       it('should all contain track-cta class', async () => {
-        window.rsSolveFilterTopic = '122';
         await this.wrapper.vm.getData();
         const linkCt = this.wrapper.findAll('a').length;
-        expect(linkCt).to.eql(9);
+        expect(linkCt).to.eql(18);
         for (let i = 0; i < linkCt; i += 1) {
-          expect(this.wrapper.findAll('a').at(i).classes()).to.contain('track-cta');
+          const classes = this.wrapper.findAll('a').at(i).classes();
+          if (classes.length > 0) {
+            expect(this.wrapper.findAll('a').at(i).classes()).to.contain('track-cta');
+          }
         }
       });
     });
@@ -120,14 +112,14 @@ describe('Solve', () => {
     describe('filteredContent', () => {
       it('loads all content and has two featured items when no filter is present', async () => {
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.filteredContent.total).to.eql(12);
+        expect(this.wrapper.vm.filteredContent.total).to.eql(8);
         expect(this.wrapper.vm.filteredContent.featured).to.eql(2);
       });
 
       it('loads only filtered content and only has one featured item when a filter is present', async () => {
         window.rsSolveFilterTopic = '269';
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.filteredContent.total).to.eql(10);
+        expect(this.wrapper.vm.filteredContent.total).to.eql(8);
         expect(this.wrapper.vm.filteredContent.featured).to.eql(1);
       });
 
@@ -232,24 +224,24 @@ describe('Solve', () => {
         await this.wrapper.vm.getData();
         expect(this.wrapper.vm.getVisibleContentCount()).to.eql(4);
         this.wrapper.vm.loadMore();
-        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(8);
+        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(7);
         this.wrapper.vm.loadMore();
-        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(9);
+        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(7);
         this.wrapper.vm.loadMore();
-        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(9);
+        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(7);
       });
     });
 
     describe('filteredContent', () => {
       it('initially contains 10 items by default', async () => {
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(10);
+        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(6);
       });
 
       it('contains 9 items when filter is changed', async () => {
         window.rsSolveFilterTopic = '272';
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(9);
+        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(7);
       });
 
       it('contains 0 items when filter is invalid', async () => {
