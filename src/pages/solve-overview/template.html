@@ -60,6 +60,29 @@
                 </p>
               </div>
             </div>
+            <div class="rsTl-featuredPodcast">
+              <a
+                href="/solve/cloud-talk"
+                :style="{
+                  'background-image': 'url(' + staticPath + '/static/cloud_talk_top.jpg' + ')'
+                }"
+                class="rsTl-featuredPodcast-img track-cta"></a>
+              <div class="rsTl-featuredPodcast-text">
+                <div class="rsTl-featuredPodcast-row" v-for="podcast in podcasts">
+                  <span class="rsTl-relatedTopics-type"><strong>{{ 'Podcast' | translate }}</strong> (@text minute listen)</span>
+                  <h3 class="rsTl-relatedTopics-smallHeader">
+                    <a
+                      :href="podcast.alias" class="rsTl-featuredPodcast-link track-cta">
+                      <span v-html="podcast.header"></span>
+                      <span class="rsTl-featuredPodcast-spanLink track-cta">{{ 'Listen' | translate }}</span>
+                    </a>
+                  </h3>
+                </div>
+                <div class="rsTl-featuredPodcast-row">
+                  <a class="rsTl-featuredPodcast-spanLink track-cta" href="/solve/cloud-talk">{{ 'Listen to More' | translate }}</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

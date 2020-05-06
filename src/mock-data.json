@@ -265,7 +265,8 @@
       "banner_768": "\/static\/hero-4.jpg?768",
       "banner_480": "\/static\/hero-4.jpg?480",
       "solve_secondary": "\/static\/hero-4.jpg?solve_secondary",
-      "solve_tertiary": "\/static\/hero-4.jpg?solve_tertiary"
+      "solve_tertiary": "\/static\/hero-4.jpg?solve_tertiary",
+      "field_featured_podcast": "True"
    },
    {
       "title":"Twelve: This is a Semi Long Title",
@@ -289,6 +290,7 @@
       "banner_768": "\/static\/hero-2.jpg?768",
       "banner_480": "\/static\/hero-2.jpg?480",
       "solve_secondary": "\/static\/hero-2.jpg?solve_secondary",
-      "solve_tertiary": "\/static\/hero-2.jpg?solve_tertiary"
+      "solve_tertiary": "\/static\/hero-2.jpg?solve_tertiary",
+      "field_featured_podcast": "True"
    }
 ]

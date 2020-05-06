@@ -97,7 +97,7 @@ describe('Solve', () => {
       it('should all contain track-cta class', async () => {
         await this.wrapper.vm.getData();
         const linkCt = this.wrapper.findAll('a').length;
-        expect(linkCt).to.eql(18);
+        expect(linkCt).to.eql(19);
         for (let i = 0; i < linkCt; i += 1) {
           const classes = this.wrapper.findAll('a').at(i).classes();
           if (classes.length > 0) {
@@ -112,14 +112,14 @@ describe('Solve', () => {
     describe('filteredContent', () => {
       it('loads all content and has two featured items when no filter is present', async () => {
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.filteredContent.total).to.eql(8);
+        expect(this.wrapper.vm.filteredContent.total).to.eql(6);
         expect(this.wrapper.vm.filteredContent.featured).to.eql(2);
       });
 
       it('loads only filtered content and only has one featured item when a filter is present', async () => {
         window.rsSolveFilterTopic = '269';
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.filteredContent.total).to.eql(8);
+        expect(this.wrapper.vm.filteredContent.total).to.eql(6);
         expect(this.wrapper.vm.filteredContent.featured).to.eql(1);
       });
 
@@ -224,24 +224,24 @@ describe('Solve', () => {
         await this.wrapper.vm.getData();
         expect(this.wrapper.vm.getVisibleContentCount()).to.eql(4);
         this.wrapper.vm.loadMore();
-        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(7);
+        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(5);
         this.wrapper.vm.loadMore();
-        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(7);
+        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(5);
         this.wrapper.vm.loadMore();
-        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(7);
+        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(5);
       });
     });
 
     describe('filteredContent', () => {
       it('initially contains 10 items by default', async () => {
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(6);
+        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(4);
       });
 
-      it('contains 9 items when filter is changed', async () => {
+      it('contains 5 items when filter is changed', async () => {
         window.rsSolveFilterTopic = '272';
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(7);
+        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(5);
       });
 
       it('contains 0 items when filter is invalid', async () => {
