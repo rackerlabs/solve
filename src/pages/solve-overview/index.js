@@ -57,6 +57,7 @@ export default Vue.component('solve-overview-content', {
       moreAmount: 4,
       visibleContent: 4,
       syndicatedLimit: 6,
+      isSyndicatedPage: false,
       topic: {
         header: false,
         desc: false,
@@ -76,16 +77,27 @@ export default Vue.component('solve-overview-content', {
     async filterByTopic() {
       const topic = window.rsSolveFilterTopic;
       if (typeof topic !== 'undefined') {
-        const cats = await this.getCategories();
-        const catData = _.find(cats, c => c.tid === topic);
-        if (catData) {
-          this.topic.header = catData.name;
-          this.topic.desc = catData.description;
+        // seperate syndicated and tid categories here
+        if (this.isSyndicatedPage) {
+          this.topic.header = this.$options.filters.translate('What We\'re Reading');
+          this.topic.desc = this.$options.filters.translate('Curated articles from the technology industry with added commentary from our technology experts');
+        } else {
+          const cats = await this.getCategories();
+          const catData = _.find(cats, c => c.tid === topic);
+          if (catData) {
+            this.topic.header = catData.name;
+            this.topic.desc = catData.description;
+          }
         }
-
         this.content = _.filter(this.content, (item) => {
-          const tokens = item.field_tl_.split(':::');
-          return tokens.indexOf(window.rsSolveFilterTopic) > -1;
+          let include;
+          if (!this.isSyndicatedPage) {
+            const tokens = item.field_tl_.split(':::');
+            include = tokens.indexOf(window.rsSolveFilterTopic) > -1;
+          } else {
+            include = item.field_syndicated_content === 'True';
+          }
+          return include;
         });
       }
     },
@@ -115,6 +127,7 @@ export default Vue.component('solve-overview-content', {
       try {
         this.loading = true;
         this.fetchError = false;
+        this.isSyndicatedPage = window.rsSolveFilterTopic === 'syndicated';
         this.content = await this.fetchData();
         await this.filterByTopic();
         this.sortData();
@@ -128,10 +141,11 @@ export default Vue.component('solve-overview-content', {
         // here we can group syndicated and normal content separately
         // since they should never be in the same list
         _.forEach(this.content, (item) => {
-          const isSyndicated = item.field_syndicated_content === 'True';
-          if (isSyndicated && syndicated.length < this.syndicatedLimit) {
+          const isSyndicatedItem = item.field_syndicated_content === 'True';
+          if (isSyndicatedItem && !this.isSyndicatedPage &&
+              syndicated.length < this.syndicatedLimit) {
             syndicated.push(item);
-          } else if (!isSyndicated) {
+          } else if (!isSyndicatedItem || (isSyndicatedItem && this.isSyndicatedPage)) {
             normalList.push(item);
           }
         });
