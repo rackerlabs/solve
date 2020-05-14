@@ -30,6 +30,25 @@ $podcast-blue: #aef4ee;
   grid-template-columns: 1fr 1fr;
 }
 
+.rsTl-featuredLarge-rowNoPodcast {
+  // sass-lint:disable-block no-vendor-prefixes no-duplicate-properties
+  -ms-grid-columns: 1fr;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr;
+}
+
+.rsTl-featuredLarge-innerNoPodcast {
+  // sass-lint:disable-block no-vendor-prefixes no-duplicate-properties
+  -ms-grid-columns: 1fr 1fr;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
+}
+
 .rsTl-featuredLarge-img {
   // sass-lint:disable-block no-vendor-prefixes
   -ms-grid-column: 1;

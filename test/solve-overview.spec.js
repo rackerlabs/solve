@@ -56,7 +56,6 @@ describe('Solve', () => {
         // Check the action text.
         expect(this.wrapper.text()).to.contain('watch');
         expect(this.wrapper.text()).to.contain('read');
-        expect(this.wrapper.text()).to.contain('listen');
       });
 
       it('should display author when syndicated content is unchecked', async () => {
@@ -97,7 +96,7 @@ describe('Solve', () => {
       it('should all contain track-cta class', async () => {
         await this.wrapper.vm.getData();
         const linkCt = this.wrapper.findAll('a').length;
-        expect(linkCt).to.eql(19);
+        expect(linkCt).to.eql(17);
         for (let i = 0; i < linkCt; i += 1) {
           const classes = this.wrapper.findAll('a').at(i).classes();
           if (classes.length > 0) {
@@ -119,7 +118,7 @@ describe('Solve', () => {
       it('loads only filtered content and only has one featured item when a filter is present', async () => {
         window.rsSolveFilterTopic = '269';
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.filteredContent.total).to.eql(6);
+        expect(this.wrapper.vm.filteredContent.total).to.eql(8);
         expect(this.wrapper.vm.filteredContent.featured).to.eql(1);
       });
 
@@ -224,11 +223,11 @@ describe('Solve', () => {
         await this.wrapper.vm.getData();
         expect(this.wrapper.vm.getVisibleContentCount()).to.eql(4);
         this.wrapper.vm.loadMore();
-        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(5);
+        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(7);
         this.wrapper.vm.loadMore();
-        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(5);
+        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(7);
         this.wrapper.vm.loadMore();
-        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(5);
+        expect(this.wrapper.vm.getVisibleContentCount()).to.eql(7);
       });
     });
 
@@ -241,7 +240,7 @@ describe('Solve', () => {
       it('contains 5 items when filter is changed', async () => {
         window.rsSolveFilterTopic = '272';
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(5);
+        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(7);
       });
 
       it('contains 0 items when filter is invalid', async () => {

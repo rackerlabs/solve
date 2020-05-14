@@ -152,10 +152,12 @@ export default Vue.component('solve-overview-content', {
           if (isSyndicatedItem && !this.isSyndicatedPage &&
               syndicated.length < this.syndicatedLimit) {
             syndicated.push(item);
-          } else if (isFeaturedPodcast && podcasts.length < this.podcastLimit) {
+          } else if (isFeaturedPodcast &&
+            podcasts.length < this.podcastLimit &&
+            !this.topic.header) {
             podcasts.push(item);
-          } else if (!isFeaturedPodcast && (!isSyndicatedItem ||
-            (isSyndicatedItem && this.isSyndicatedPage))) {
+          } else if ((!isFeaturedPodcast || (isFeaturedPodcast && this.topic.header)) &&
+            (!isSyndicatedItem || (isSyndicatedItem && this.isSyndicatedPage))) {
             normalList.push(item);
           }
         });
