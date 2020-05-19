@@ -147,6 +147,15 @@ $syndicate-blue: #d7eafa;
   padding: 12px;
 }
 
+.rsTl-syndicatedBox-link {
+  color: $rackspace-red;
+  text-decoration: underline;
+
+  &:hover {
+    color: $rackspace-red;
+  }
+}
+
 // edge hacks
 @supports (-ms-ime-align: auto) { // sass-lint:disable-line no-vendor-prefixes
   .rsTl-relatedTopics-col {
