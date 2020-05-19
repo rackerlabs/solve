@@ -56,7 +56,6 @@ describe('Solve', () => {
         // Check the action text.
         expect(this.wrapper.text()).to.contain('watch');
         expect(this.wrapper.text()).to.contain('read');
-        expect(this.wrapper.text()).to.contain('listen');
       });
 
       it('should display author when syndicated content is unchecked', async () => {
@@ -97,7 +96,7 @@ describe('Solve', () => {
       it('should all contain track-cta class', async () => {
         await this.wrapper.vm.getData();
         const linkCt = this.wrapper.findAll('a').length;
-        expect(linkCt).to.eql(18);
+        expect(linkCt).to.eql(17);
         for (let i = 0; i < linkCt; i += 1) {
           const classes = this.wrapper.findAll('a').at(i).classes();
           if (classes.length > 0) {
@@ -112,7 +111,7 @@ describe('Solve', () => {
     describe('filteredContent', () => {
       it('loads all content and has two featured items when no filter is present', async () => {
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.filteredContent.total).to.eql(8);
+        expect(this.wrapper.vm.filteredContent.total).to.eql(6);
         expect(this.wrapper.vm.filteredContent.featured).to.eql(2);
       });
 
@@ -235,10 +234,10 @@ describe('Solve', () => {
     describe('filteredContent', () => {
       it('initially contains 10 items by default', async () => {
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(6);
+        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(4);
       });
 
-      it('contains 9 items when filter is changed', async () => {
+      it('contains 5 items when filter is changed', async () => {
         window.rsSolveFilterTopic = '272';
         await this.wrapper.vm.getData();
         expect(this.wrapper.vm.getFilteredContentCount()).to.equal(7);
