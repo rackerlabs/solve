@@ -49,6 +49,9 @@ export default Vue.component('solve-overview-content', {
         infographic: 'Read Now',
       };
     },
+    staticPath() {
+      return this.$env === 'development' ? '' : '/themes/custom/rackspace/libraries/solve/dist';
+    },
   },
   data() {
     return {
@@ -58,6 +61,7 @@ export default Vue.component('solve-overview-content', {
       visibleContent: 4,
       syndicatedLimit: 6,
       isSyndicatedPage: false,
+      podcastLimit: 2,
       topic: {
         header: false,
         desc: false,
@@ -68,6 +72,7 @@ export default Vue.component('solve-overview-content', {
       },
       content: null,
       syndicated: null,
+      podcasts: null,
     };
   },
   created() {
@@ -138,19 +143,27 @@ export default Vue.component('solve-overview-content', {
         }
         const normalList = [];
         const syndicated = [];
+        const podcasts = [];
         // here we can group syndicated and normal content separately
         // since they should never be in the same list
         _.forEach(this.content, (item) => {
           const isSyndicatedItem = item.field_syndicated_content === 'True';
+          const isFeaturedPodcast = item.field_featured_podcast === 'True';
           if (isSyndicatedItem && !this.isSyndicatedPage &&
               syndicated.length < this.syndicatedLimit) {
             syndicated.push(item);
-          } else if (!isSyndicatedItem || (isSyndicatedItem && this.isSyndicatedPage)) {
+          } else if (isFeaturedPodcast &&
+            podcasts.length < this.podcastLimit &&
+            !this.topic.header) {
+            podcasts.push(item);
+          } else if ((!isFeaturedPodcast || (isFeaturedPodcast && this.topic.header)) &&
+            (!isSyndicatedItem || (isSyndicatedItem && this.isSyndicatedPage))) {
             normalList.push(item);
           }
         });
         this.content = normalList;
         this.syndicated = syndicated;
+        this.podcasts = podcasts;
         // if there is no topic filter then we need the featured header
         let article = 0;
         if (!this.topic.header) {

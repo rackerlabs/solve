@@ -42,8 +42,8 @@
     <div class="rsTl-contentContainer container container-xl">
       <div class="rsTl-article-row" v-if="featured.second">
         <div class="rsTl-column">
-          <div class="rsTl-featuredLarge-row">
-            <div class="rsTl-featuredLarge-inner">
+          <div class="rsTl-featuredLarge-row" :class="{ 'rsTl-featuredLarge-rowNoPodcast': podcasts.length < 1 }">
+            <div class="rsTl-featuredLarge-inner" :class="{ 'rsTl-featuredLarge-innerNoPodcast': podcasts.length < 1 }">
               <a class="rsTl-featuredLarge-img track-cta" :href="featured.second.alias" :style="{ 'background-image': 'url(' + featured.second.solve_secondary + ')', 'background-position': 'top right' }"></a>
               <div class="rsTl-featuredLarge-text">
                 <span class="rsTl-featuredLarge-type">
@@ -58,6 +58,32 @@
                     {{ ctaText[featured.second.field_content_type_key] | translate }}
                   </a>
                 </p>
+              </div>
+            </div>
+            <div class="rsTl-featuredPodcast" v-if="podcasts.length > 0">
+              <a
+                href="/solve/cloud-talk"
+                :style="{
+                  'background-image': 'url(' + staticPath + '/static/cloud_talk_top.jpg' + ')'
+                }"
+                class="rsTl-featuredPodcast-img track-cta"></a>
+              <div class="rsTl-featuredPodcast-text">
+                <div class="rsTl-featuredPodcast-row" v-for="podcast in podcasts">
+                  <span class="rsTl-relatedTopics-type">
+                    <strong>{{ podcast.field_content_type | translate }}</strong> 
+                    ({{ '@text minute ' + viewAction[podcast.field_content_type_key] | translate({'@text': podcast.field_content_length}) }})
+                  </span>
+                  <h3 class="rsTl-relatedTopics-smallHeader">
+                    <a
+                      :href="podcast.alias" class="rsTl-featuredPodcast-link track-cta">
+                      <span v-html="podcast.header"></span>
+                      <span class="rsTl-featuredPodcast-spanLink track-cta">{{ 'Listen' | translate }}</span>
+                    </a>
+                  </h3>
+                </div>
+                <div class="rsTl-featuredPodcast-row">
+                  <a class="rsTl-featuredPodcast-spanLink track-cta" href="/solve/cloud-talk">{{ 'Listen to More' | translate }}</a>
+                </div>
               </div>
             </div>
           </div>
