@@ -25,7 +25,7 @@
             <h1 class="rsTl-feature-title"><a class="rsTl-feature-titleLink track-cta" :href="featured.first.alias" v-html="featured.first.header"></a></h1>
             <p class="rsTl-feature-p" v-html="$options.filters.truncate(featured.first.body, 200)"></p>
             <p class="rsTl-feature-p">
-              <span class="rsTl-feature-author" v-if="featured.first.field_syndicated_content === 'True'" v-html="featured.first.field_attribution_name"></span>
+              <span class="rsTl-feature-author" v-if="isSyndicatedItem(featured.first)" v-html="featured.first.field_attribution_name"></span>
               <span class="rsTl-feature-author" v-else v-html="featured.first.field_author"></span> – {{ getDateString(featured.first.field_published_date) }}
             </p>
             <p>
