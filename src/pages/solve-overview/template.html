@@ -125,7 +125,7 @@
     <div class="rsTl-contentContainer container container-xl">
       <div class="rsTl-article-row">
         <div class="rsTl-column rsTl-syndicatedBox">
-          <h2 class="rsTl-syndicatedBox-header">{{ 'What We\'re Reading' | translate }}</h2>
+          <h2 class="rsTl-syndicatedBox-header">{{ 'What We\'re Reading... And Our POV On It!' | translate }}</h2>
           <div class="rsTl-relatedTopics-row rsTl-relatedTopics-2colRow">
             <div class="rsTl-relatedTopics-col" v-for="(article, index) in syndicated" :style="getGridStyles(index)" >
               <div class="rsTl-relatedTopics-feature">
@@ -140,6 +140,9 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div>
+            <a href="/solve/what-we-are-reading" class="rsTl-syndicatedBox-link">{{ 'Read More >' | translate }}</a>
           </div>
         </div>
       </div>
