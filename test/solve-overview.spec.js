@@ -60,7 +60,8 @@ describe('Solve', () => {
 
       it('should display author when syndicated content is unchecked', async () => {
         await this.wrapper.vm.getData();
-        this.wrapper.vm.content[0].field_syndicated_content = 'False';
+        const first = this.wrapper.vm.content[0];
+        first.field_tl_ = first.field_tl_.replace(this.wrapper.vm.tokens.syndicated, '');
         // Check featured post.
         expect(this.wrapper.text()).to.not.contain('Roger Avalos & HEB');
         expect(this.wrapper.text()).to.contain('Mike Rustyellow');
@@ -68,7 +69,8 @@ describe('Solve', () => {
 
       it('should display author when syndicated content is null', async () => {
         await this.wrapper.vm.getData();
-        this.wrapper.vm.content[0].field_syndicated_content = '';
+        const first = this.wrapper.vm.content[0];
+        first.field_tl_ = first.field_tl_.replace(this.wrapper.vm.tokens.syndicated, '');
         // Check featured post.
         expect(this.wrapper.text()).to.not.contain('Roger Avalos & HEB');
         expect(this.wrapper.text()).to.contain('Mike Rustyellow');
@@ -76,7 +78,8 @@ describe('Solve', () => {
 
       it('should display publication attribution when syndicated content is checked', async () => {
         await this.wrapper.vm.getData();
-        this.wrapper.vm.content[0].field_syndicated_content = 'True';
+        const first = this.wrapper.vm.content[0];
+        first.field_tl_ = `${first.field_tl_}:::${this.wrapper.vm.tokens.syndicated}`;
         // Check featured post.
         expect(this.wrapper.text()).to.not.contain('Mike Rustyellow - ');
         expect(this.wrapper.text()).to.contain('Mike Rustyellow & HEB');
@@ -276,7 +279,7 @@ describe('Solve', () => {
 
     describe('getCategories', () => {
       it('retrieves 6 results', () => this.wrapper.vm.getCategories().then((cats) => {
-        expect(cats.length).to.eql(6);
+        expect(cats.length).to.eql(8);
         expect(cats[2].name).to.eql('Innovation');
         expect(cats[2].tid).to.eql('269');
         expect(cats[5].name).to.eql('What Are You Solving For?');

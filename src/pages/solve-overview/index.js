@@ -61,6 +61,10 @@ export default Vue.component('solve-overview-content', {
       visibleContent: 4,
       syndicatedLimit: 6,
       isSyndicatedPage: false,
+      tokens: {
+        podcast: '1117',
+        syndicated: '1118',
+      },
       podcastLimit: 2,
       topic: {
         header: false,
@@ -83,25 +87,15 @@ export default Vue.component('solve-overview-content', {
       const topic = window.rsSolveFilterTopic;
       if (typeof topic !== 'undefined') {
         // seperate syndicated and tid categories here
-        if (this.isSyndicatedPage) {
-          this.topic.header = this.$options.filters.translate('What We\'re Reading');
-          this.topic.desc = this.$options.filters.translate('Curated articles from the technology industry with added commentary from our technology experts');
-        } else {
-          const cats = await this.getCategories();
-          const catData = _.find(cats, c => c.tid === topic);
-          if (catData) {
-            this.topic.header = catData.name;
-            this.topic.desc = catData.description;
-          }
+        const cats = await this.getCategories();
+        const catData = _.find(cats, c => c.tid === topic);
+        if (catData) {
+          this.topic.header = catData.name;
+          this.topic.desc = catData.description;
         }
         this.content = _.filter(this.content, (item) => {
-          let include;
-          if (!this.isSyndicatedPage) {
-            const tokens = item.field_tl_.split(':::');
-            include = tokens.indexOf(window.rsSolveFilterTopic) > -1;
-          } else {
-            include = item.field_syndicated_content === 'True';
-          }
+          const tokens = item.field_tl_.split(':::');
+          const include = tokens.indexOf(window.rsSolveFilterTopic) > -1;
           return include;
         });
       }
@@ -132,7 +126,7 @@ export default Vue.component('solve-overview-content', {
       try {
         this.loading = true;
         this.fetchError = false;
-        this.isSyndicatedPage = window.rsSolveFilterTopic === 'syndicated';
+        this.isSyndicatedPage = window.rsSolveFilterTopic === this.tokens.syndicated;
         this.content = await this.fetchData();
         await this.filterByTopic();
         this.sortData();
@@ -147,8 +141,9 @@ export default Vue.component('solve-overview-content', {
         // here we can group syndicated and normal content separately
         // since they should never be in the same list
         _.forEach(this.content, (item) => {
-          const isSyndicatedItem = item.field_syndicated_content === 'True';
-          const isFeaturedPodcast = item.field_featured_podcast === 'True';
+          const tokens = item.field_tl_.split(':::');
+          const isSyndicatedItem = tokens.includes(this.tokens.syndicated);
+          const isFeaturedPodcast = tokens.includes(this.tokens.podcast);
           if (isSyndicatedItem && !this.isSyndicatedPage &&
               syndicated.length < this.syndicatedLimit) {
             syndicated.push(item);
@@ -179,6 +174,10 @@ export default Vue.component('solve-overview-content', {
         this.loading = false;
         this.initTitleFix();
       }
+    },
+    isSyndicatedItem(item) {
+      const tokens = item.field_tl_.split(':::');
+      return tokens.includes(this.tokens.syndicated);
     },
     async fetchData() {
       let data = {};
