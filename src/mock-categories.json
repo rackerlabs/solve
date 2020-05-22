@@ -28,5 +28,15 @@
       "tid":"273",
       "name":"What Are You Solving For?",
       "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+   },
+   {
+     "tid":"1117",
+     "name":"Cloud Talk",
+     "description":"Join host Jeff DeVerter and guests for diverse insights around complex tech problems."
+   },
+   {
+     "tid": "1118",
+     "name":"What We're Reading... And Our POV On It!",
+     "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
    }
 ]
