@@ -8,15 +8,48 @@
       drupalSettings = {
         rsSolveLastMod: '123456789',
       };
-      window.rsSolveFilterTopic = '268';
+      // Setting topic via query string parameter is for dev purposes only.
+      // Don't do this in production.
+      window.rsSolveFilterTopic = new URLSearchParams(window.location.search).get('filter') || undefined;
       window.Drupal = window.Drupal || {
         t: function(s) {
           return s;
         }
       }
     </script>
+    <style type="text/css">
+    /**
+     * Overlay styling for dev-purposes only. Don't copy into production.
+     */
+    .solveDevFilterOverlay {
+      background: #3c3c3c;
+      bottom: 0;
+      color: #c8c8c8;
+      font-size: 0.8em;
+      padding: 3px 5px;
+      position: fixed;
+      right: 0;
+    }
+    .solveDevFilterOverlay-link,
+    .solveDevFilterOverlay-link:hover,
+    .solveDevFilterOverlay-link:focus {
+      color: #ffffff;
+    }
+    </style>
   </head>
   <body>
+    <!-- Overlay for dev-purposes only. Don't copy into production. -->
+    <div class="solveDevFilterOverlay">
+      <a class="solveDevFilterOverlay-link" href="/">Overview</a>
+      |
+      <a class="solveDevFilterOverlay-link" href="/?filter=268">Category</a>
+      |
+      <a class="solveDevFilterOverlay-link" href="/?filter=1118">Syndicated</a>
+      |
+      <a class="solveDevFilterOverlay-link" href="/?filter=1117">Podcast</a>
+    </div>
+    <!-- /Overlay -->
+
     <div id="rsSolve"></div>
   </body>
 </html>
