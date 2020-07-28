@@ -41,6 +41,11 @@ describe('Solve', () => {
         expect(this.wrapper.text()).to.contain('This is a Semi Long Title 5');
       });
 
+      it('should display formatted date', async () => {
+        await this.wrapper.vm.getData();
+        expect(this.wrapper.text()).to.contain('9 Sept. 2019');
+      });
+
       it('should output the translatable content type strings, not the content type key', async () => {
         await this.wrapper.vm.getData();
         // Check content type strings.
@@ -180,31 +185,6 @@ describe('Solve', () => {
 
       it('returns {3,2} for index 5', () => {
         expect(this.wrapper.vm.getGridStyles(5)).to.eql({ 'grid-row': 3, 'grid-column': 2 });
-      });
-    });
-
-    describe('formatDate', () => {
-      it('returns properly formatted date when passed a Date object', () => {
-        const date = new Date('2017-06-11 03:30:30');
-        expect(this.wrapper.vm.formatDate(date)).to.eql('June 11, 2017');
-      });
-
-      it('throws TypeError when passed a string', () => {
-        const date = '2017-06-11 03:30:30';
-        expect(() => { this.wrapper.vm.formatDate(date); })
-          .to.throw('date.getDate is not a function');
-      });
-    });
-
-    describe('getDateString', () => {
-      it('returns properly formatted date when passed a Date object', () => {
-        const date = new Date('2017-06-11 03:30:30');
-        expect(this.wrapper.vm.getDateString(date)).to.eql('June 11, 2017');
-      });
-
-      it('returns properly formatted date when passed a string', () => {
-        const date = '2017-06-11 03:30:30';
-        expect(this.wrapper.vm.getDateString(date)).to.eql('June 11, 2017');
       });
     });
 
