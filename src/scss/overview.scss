@@ -72,7 +72,7 @@ $podcast-blue: #aef4ee;
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
-  height: 300px;
+  height: 350px;
 }
 
 .rsTl-featuredPodcast-text {
@@ -289,5 +289,11 @@ $podcast-blue: #aef4ee;
   .rsTl-feature-btn {
     background-color: $white;
     color: $rackspace-red;
+  }
+}
+
+@media screen and (max-width: $screen-lg) {
+  .rsTl-featuredPodcast-img {
+    height: 300px;
   }
 }
