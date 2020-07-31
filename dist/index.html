@@ -1,9 +1,27 @@
 <!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Rackspace Filter Center</title><script type=text/javascript>drupalSettings = {
         rsSolveLastMod: '123456789',
       };
-      window.rsSolveFilterTopic = '268';
+      // Setting topic via query string parameter is for dev purposes only.
+      // Don't do this in production.
+      window.rsSolveFilterTopic = new URLSearchParams(window.location.search).get('filter') || undefined;
       window.Drupal = window.Drupal || {
         t: function(s) {
           return s;
         }
-      }</script><link href=/static/css/app.css rel=stylesheet></head><body><div id=rsSolve></div><script type=text/javascript src=/static/js/manifest.js></script><script type=text/javascript src=/static/js/vendor.js></script><script type=text/javascript src=/static/js/app.js></script></body></html>
+      }</script><style type=text/css>/**
+     * Overlay styling for dev-purposes only. Don't copy into production.
+     */
+    .solveDevFilterOverlay {
+      background: #3c3c3c;
+      bottom: 0;
+      color: #c8c8c8;
+      font-size: 0.8em;
+      padding: 3px 5px;
+      position: fixed;
+      right: 0;
+    }
+    .solveDevFilterOverlay-link,
+    .solveDevFilterOverlay-link:hover,
+    .solveDevFilterOverlay-link:focus {
+      color: #ffffff;
+    }</style><link href=/static/css/app.css rel=stylesheet></head><body><div class=solveDevFilterOverlay><a class=solveDevFilterOverlay-link href=/ >Overview</a> | <a class=solveDevFilterOverlay-link href="/?filter=268">Category</a> | <a class=solveDevFilterOverlay-link href="/?filter=1118">Syndicated</a> | <a class=solveDevFilterOverlay-link href="/?filter=1117">Podcast</a></div><div id=rsSolve></div><script type=text/javascript src=/static/js/manifest.js></script><script type=text/javascript src=/static/js/vendor.js></script><script type=text/javascript src=/static/js/app.js></script></body></html>
