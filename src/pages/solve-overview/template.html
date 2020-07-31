@@ -26,7 +26,7 @@
             <p class="rsTl-feature-p" v-html="$options.filters.truncate(featured.first.body, 200)"></p>
             <p class="rsTl-feature-p">
               <span class="rsTl-feature-author" v-if="isSyndicatedItem(featured.first)" v-html="featured.first.field_attribution_name"></span>
-              <span class="rsTl-feature-author" v-else v-html="featured.first.field_author"></span> – {{ getDateString(featured.first.field_published_date) }}
+              <span class="rsTl-feature-author" v-else v-html="featured.first.field_author"></span> – {{ featured.first.field_published_date_formatted }}
             </p>
             <p>
               <a
@@ -70,7 +70,7 @@
               <div class="rsTl-featuredPodcast-text">
                 <div class="rsTl-featuredPodcast-row" v-for="podcast in podcasts">
                   <span class="rsTl-relatedTopics-type">
-                    <strong>{{ podcast.field_content_type | translate }}</strong> 
+                    <strong>{{ podcast.field_content_type | translate }}</strong>
                     ({{ '@text minute ' + viewAction[podcast.field_content_type_key] | translate({'@text': podcast.field_content_length}) }})
                   </span>
                   <h3 class="rsTl-relatedTopics-smallHeader">

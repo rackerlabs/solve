@@ -3,14 +3,12 @@ import axios from 'axios';
 import _ from 'lodash';
 import mockData from '@/mock-data.json';
 import mockCategories from '@/mock-categories.json';
-import formatDate from '@/mixins/date-format';
 
 const template = require('./template.html');
 
 export default Vue.component('solve-overview-content', {
   template,
   name: 'solve-overview-content',
-  mixins: [formatDate],
   computed: {
     filteredContent() {
       let content = _.cloneDeep(this.content);
@@ -226,9 +224,6 @@ export default Vue.component('solve-overview-content', {
       if (num < this.getFilteredContentCount()) {
         this.incrementVisibleContent();
       }
-    },
-    getDateString(isoDate) {
-      return this.formatDate(new Date(isoDate));
     },
     getGridStyles(index) {
       return {
