@@ -68,11 +68,11 @@ $podcast-blue: #aef4ee;
 }
 
 .rsTl-featuredPodcast-img {
-  background-position: right top;
+  background-position: right 20%;
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
-  height: 350px;
+  height: 300px;
 }
 
 .rsTl-featuredPodcast-text {
@@ -289,11 +289,5 @@ $podcast-blue: #aef4ee;
   .rsTl-feature-btn {
     background-color: $white;
     color: $rackspace-red;
-  }
-}
-
-@media screen and (max-width: $screen-lg) {
-  .rsTl-featuredPodcast-img {
-    height: 300px;
   }
 }
