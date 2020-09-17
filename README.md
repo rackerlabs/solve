@@ -10,7 +10,7 @@ Mock data is provided for tests and local development purposes.
 
 ## Requirements
 
-NodeJS 10, 11 or 12.
+NodeJS 14.
 
 ## Getting Started
 
