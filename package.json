@@ -20,7 +20,7 @@
     "url": "git@github.com:rackerlabs/solve.git"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "ellipsed": "^1.4.0",
     "lodash": "^4.17.20",
