@@ -57,11 +57,8 @@ export default Vue.component('solve-overview-content', {
       fetchError: false,
       moreAmount: 4,
       visibleContent: 4,
-      syndicatedLimit: 6,
-      isSyndicatedPage: false,
       tokens: {
         podcast: '1117',
-        syndicated: '1118',
       },
       podcastLimit: 2,
       topic: {
@@ -73,7 +70,6 @@ export default Vue.component('solve-overview-content', {
         second: null,
       },
       content: null,
-      syndicated: null,
       podcasts: null,
     };
   },
@@ -84,7 +80,7 @@ export default Vue.component('solve-overview-content', {
     async filterByTopic() {
       const topic = window.rsSolveFilterTopic;
       if (typeof topic !== 'undefined') {
-        // seperate syndicated and tid categories here
+        // seperate categories here
         const cats = await this.getCategories();
         const catData = _.find(cats, c => c.tid === topic);
         if (catData) {
@@ -124,7 +120,6 @@ export default Vue.component('solve-overview-content', {
       try {
         this.loading = true;
         this.fetchError = false;
-        this.isSyndicatedPage = window.rsSolveFilterTopic === this.tokens.syndicated;
         this.content = await this.fetchData();
         await this.filterByTopic();
         this.sortData();
@@ -134,28 +129,21 @@ export default Vue.component('solve-overview-content', {
           this.content.splice(0, 0, this.content.splice(pinned, 1)[0]);
         }
         const normalList = [];
-        const syndicated = [];
         const podcasts = [];
-        // here we can group syndicated and normal content separately
+        // here we can group content separately
         // since they should never be in the same list
         _.forEach(this.content, (item) => {
           const tokens = item.field_tl_.split(':::');
-          const isSyndicatedItem = tokens.includes(this.tokens.syndicated);
           const isFeaturedPodcast = tokens.includes(this.tokens.podcast);
-          if (isSyndicatedItem && !this.isSyndicatedPage &&
-              syndicated.length < this.syndicatedLimit) {
-            syndicated.push(item);
-          } else if (isFeaturedPodcast &&
+          if (isFeaturedPodcast &&
             podcasts.length < this.podcastLimit &&
             !this.topic.header) {
             podcasts.push(item);
-          } else if ((!isFeaturedPodcast || (isFeaturedPodcast && this.topic.header)) &&
-            (!isSyndicatedItem || (isSyndicatedItem && this.isSyndicatedPage))) {
+          } else if ((!isFeaturedPodcast || (isFeaturedPodcast && this.topic.header))) {
             normalList.push(item);
           }
         });
         this.content = normalList;
-        this.syndicated = syndicated;
         this.podcasts = podcasts;
         // if there is no topic filter then we need the featured header
         let article = 0;
@@ -172,10 +160,6 @@ export default Vue.component('solve-overview-content', {
         this.loading = false;
         this.initTitleFix();
       }
-    },
-    isSyndicatedItem(item) {
-      const tokens = item.field_tl_.split(':::');
-      return tokens.includes(this.tokens.syndicated);
     },
     async fetchData() {
       let data = {};

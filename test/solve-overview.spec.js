@@ -43,6 +43,7 @@ describe('Solve', () => {
 
       it('should display formatted date', async () => {
         await this.wrapper.vm.getData();
+        await this.wrapper.vm.getData();
         expect(this.wrapper.text()).to.contain('9 Sept. 2019');
       });
 
@@ -61,33 +62,6 @@ describe('Solve', () => {
         // Check the action text.
         expect(this.wrapper.text()).to.contain('watch');
         expect(this.wrapper.text()).to.contain('read');
-      });
-
-      it('should display author when syndicated content is unchecked', async () => {
-        await this.wrapper.vm.getData();
-        const first = this.wrapper.vm.content[0];
-        first.field_tl_ = first.field_tl_.replace(this.wrapper.vm.tokens.syndicated, '');
-        // Check featured post.
-        expect(this.wrapper.text()).to.not.contain('Roger Avalos & HEB');
-        expect(this.wrapper.text()).to.contain('Mike Rustyellow');
-      });
-
-      it('should display author when syndicated content is null', async () => {
-        await this.wrapper.vm.getData();
-        const first = this.wrapper.vm.content[0];
-        first.field_tl_ = first.field_tl_.replace(this.wrapper.vm.tokens.syndicated, '');
-        // Check featured post.
-        expect(this.wrapper.text()).to.not.contain('Roger Avalos & HEB');
-        expect(this.wrapper.text()).to.contain('Mike Rustyellow');
-      });
-
-      it('should display publication attribution when syndicated content is checked', async () => {
-        await this.wrapper.vm.getData();
-        const first = this.wrapper.vm.content[0];
-        first.field_tl_ = `${first.field_tl_}:::${this.wrapper.vm.tokens.syndicated}`;
-        // Check featured post.
-        expect(this.wrapper.text()).to.not.contain('Mike Rustyellow - ');
-        expect(this.wrapper.text()).to.contain('Mike Rustyellow & HEB');
       });
 
       it('should display an escaped header', async () => {
@@ -258,8 +232,8 @@ describe('Solve', () => {
     });
 
     describe('getCategories', () => {
-      it('retrieves 6 results', () => this.wrapper.vm.getCategories().then((cats) => {
-        expect(cats.length).to.eql(8);
+      it('retrieves 7 results', () => this.wrapper.vm.getCategories().then((cats) => {
+        expect(cats.length).to.eql(7);
         expect(cats[2].name).to.eql('Innovation');
         expect(cats[2].tid).to.eql('269');
         expect(cats[5].name).to.eql('What Are You Solving For?');
