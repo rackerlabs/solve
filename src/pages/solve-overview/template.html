@@ -24,6 +24,10 @@
             <span class="rsTl-article-read"><strong>{{ featured.first.field_content_type | translate }}</strong> ({{ '@text minute ' + viewAction[featured.first.field_content_type_key] | translate({'@text': featured.first.field_content_length}) }})</span>
             <h1 class="rsTl-feature-title"><a class="rsTl-feature-titleLink track-cta" :href="featured.first.alias" v-html="featured.first.header"></a></h1>
             <p class="rsTl-feature-p" v-html="$options.filters.truncate(featured.first.body, 200)"></p>
+            <p class="rsTl-feature-p">
+              <span class="rsTl-feature-author" v-html="featured.first.field_attribution_name"></span>
+              <span class="rsTl-feature-author" v-if v-html="featured.first.field_author"></span> – {{ featured.first.field_published_date_formatted }}
+            </p>
             <p>
               <a
                 :href="featured.first.alias"
