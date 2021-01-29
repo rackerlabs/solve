@@ -63,31 +63,13 @@ describe('Solve', () => {
         expect(this.wrapper.text()).to.contain('read');
       });
 
-      it('should display author when syndicated content is unchecked', async () => {
+      it('should display author', async () => {
         await this.wrapper.vm.getData();
         const first = this.wrapper.vm.content[0];
         first.field_tl_ = first.field_tl_.replace(this.wrapper.vm.tokens.syndicated, '');
         // Check featured post.
         expect(this.wrapper.text()).to.not.contain('Roger Avalos & HEB');
         expect(this.wrapper.text()).to.contain('Mike Rustyellow');
-      });
-
-      it('should display author when syndicated content is null', async () => {
-        await this.wrapper.vm.getData();
-        const first = this.wrapper.vm.content[0];
-        first.field_tl_ = first.field_tl_.replace(this.wrapper.vm.tokens.syndicated, '');
-        // Check featured post.
-        expect(this.wrapper.text()).to.not.contain('Roger Avalos & HEB');
-        expect(this.wrapper.text()).to.contain('Mike Rustyellow');
-      });
-
-      it('should display publication attribution when syndicated content is checked', async () => {
-        await this.wrapper.vm.getData();
-        const first = this.wrapper.vm.content[0];
-        first.field_tl_ = `${first.field_tl_}:::${this.wrapper.vm.tokens.syndicated}`;
-        // Check featured post.
-        expect(this.wrapper.text()).to.not.contain('Mike Rustyellow - ');
-        expect(this.wrapper.text()).to.contain('Mike Rustyellow & HEB');
       });
 
       it('should display an escaped header', async () => {
@@ -104,7 +86,7 @@ describe('Solve', () => {
       it('should all contain track-cta class', async () => {
         await this.wrapper.vm.getData();
         const linkCt = this.wrapper.findAll('a').length;
-        expect(linkCt).to.eql(17);
+        expect(linkCt).to.eql(18);
         for (let i = 0; i < linkCt; i += 1) {
           const classes = this.wrapper.findAll('a').at(i).classes();
           if (classes.length > 0) {
@@ -119,7 +101,7 @@ describe('Solve', () => {
     describe('filteredContent', () => {
       it('loads all content and has two featured items when no filter is present', async () => {
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.filteredContent.total).to.eql(6);
+        expect(this.wrapper.vm.filteredContent.total).to.eql(7);
         expect(this.wrapper.vm.filteredContent.featured).to.eql(2);
       });
 
@@ -189,10 +171,10 @@ describe('Solve', () => {
     });
 
     describe('fetchData', () => {
-      it('retrieves 12 results', () => this.wrapper.vm.fetchData().then((data) => {
-        expect(data.length).to.eql(12);
-        expect(data[0].title).to.eql('Thought Leadership: Sample Admin Title');
-        expect(data[10].field_author).to.eql('Mike Rustyellow');
+      it('retrieves 9 results', () => this.wrapper.vm.fetchData().then((data) => {
+        expect(data.length).to.eql(9);
+        expect(data[0].title).to.eql('Three: This is a Semi Long Title');
+        expect(data[5].field_author).to.eql('Mike Rustyellow');
       }));
     });
 
@@ -215,9 +197,9 @@ describe('Solve', () => {
     });
 
     describe('filteredContent', () => {
-      it('initially contains 10 items by default', async () => {
+      it('initially contains 5 items by default', async () => {
         await this.wrapper.vm.getData();
-        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(4);
+        expect(this.wrapper.vm.getFilteredContentCount()).to.equal(5);
       });
 
       it('contains 5 items when filter is changed', async () => {
@@ -258,8 +240,8 @@ describe('Solve', () => {
     });
 
     describe('getCategories', () => {
-      it('retrieves 6 results', () => this.wrapper.vm.getCategories().then((cats) => {
-        expect(cats.length).to.eql(8);
+      it('retrieves 7 results', () => this.wrapper.vm.getCategories().then((cats) => {
+        expect(cats.length).to.eql(7);
         expect(cats[2].name).to.eql('Innovation');
         expect(cats[2].tid).to.eql('269');
         expect(cats[5].name).to.eql('What Are You Solving For?');

@@ -25,8 +25,7 @@
             <h1 class="rsTl-feature-title"><a class="rsTl-feature-titleLink track-cta" :href="featured.first.alias" v-html="featured.first.header"></a></h1>
             <p class="rsTl-feature-p" v-html="$options.filters.truncate(featured.first.body, 200)"></p>
             <p class="rsTl-feature-p">
-              <span class="rsTl-feature-author" v-if="isSyndicatedItem(featured.first)" v-html="featured.first.field_attribution_name"></span>
-              <span class="rsTl-feature-author" v-else v-html="featured.first.field_author"></span> – {{ featured.first.field_published_date_formatted }}
+              <span class="rsTl-feature-author" v-html="featured.first.field_author"></span> – {{ featured.first.field_published_date_formatted }}
             </p>
             <p>
               <a
@@ -119,33 +118,6 @@
           {{ 'Load More Posts' | translate }}
         </a>
       </p>
-    </div>
-  </div>
-  <div v-if="!loading && !topic.header && !fetchError && syndicated && syndicated.length > 0">
-    <div class="rsTl-contentContainer container container-xl">
-      <div class="rsTl-article-row">
-        <div class="rsTl-column rsTl-syndicatedBox">
-          <h2 class="rsTl-syndicatedBox-header">{{ 'What We\'re Reading... And Our POV On It!' | translate }}</h2>
-          <div class="rsTl-relatedTopics-row rsTl-relatedTopics-2colRow">
-            <div class="rsTl-relatedTopics-col" v-for="(article, index) in syndicated" :style="getGridStyles(index)" >
-              <div class="rsTl-relatedTopics-feature">
-                <a class="rsTl-syndicatedBox-logo track-cta" :href="article.alias">
-                  <img class="rsTl-syndicatedBox-logoImg" :src="article.sc_logo" alt="" />
-                </a>
-                <div class="rsTl-relatedTopics-text rsTl-syndicatedBox-text">
-                  <span class="rsTl-relatedTopics-type">
-                    <strong>{{ article.field_content_type | translate }}</strong> ({{ '@text minute ' + viewAction[article.field_content_type_key] | translate({'@text': article.field_content_length}) }})
-                  </span>
-                  <h3 class="rsTl-relatedTopics-smallHeader"><a class="rsTl-relatedTopics-link track-cta" :href="article.alias" v-html="article.header"></a></h3>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <a href="/solve/what-we-are-reading" class="rsTl-syndicatedBox-link">{{ 'Read More >' | translate }}</a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <div v-if="!loading && filteredContent.total < 1">
