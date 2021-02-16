@@ -63,9 +63,13 @@
               <a
                 href="/solve/cloud-talk"
                 :style="{
-                  'background-image': 'url(' + staticPath + '/static/cloud_talk_top_new.jpg' + ')'
+                  'background-image': 'url(' + staticPath + '/static/cloud_talk_top.jpg' + ')'
                 }"
-                class="rsTl-featuredPodcast-img track-cta"></a>
+                class="rsTl-featuredPodcast-img track-cta">
+                <span class="rsTl-featuredPodcast-imgTitle">
+                  Cloud Talk Podcast
+                </span>
+              </a>
               <div class="rsTl-featuredPodcast-text">
                 <div class="rsTl-featuredPodcast-row" v-for="podcast in podcasts">
                   <span class="rsTl-relatedTopics-type">
